@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Escodoo
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_line_form_view">
+        <field name="name">sale.order.direct.sale.form (in sale_margin_supplierinfo_cost)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//tree//field[@name='tax_id']" position="before">
+                <field name="product_tmpl_id" invisible="1" />
+                <field name="seller_count"  invisible="1" />
+                 <field name="seller_id" readonly="1"/>
+                 <field name="margin"/>
+            </xpath>
+
+            <xpath expr="//form//group//group//field[@name='tax_id']" position="after">
+                <field name="product_tmpl_id" invisible="1"/>
+                <field name="seller_id" readonly="1" />
+                <field name="margin"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>
