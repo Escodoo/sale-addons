@@ -9,15 +9,18 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/form//field[@name='route_id']" position="replace">
-                <field name="route_id" options="{'no_create': True}" required="True"/>
-            </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="replace">
-                <field name="route_id" options="{'no_create': True}" required="True"/>
-            </xpath>
-<!--            <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="before">-->
-<!--                <field name="route_id" options="{'no_create': True}"/>-->
+<!--            <xpath expr="//field[@name='order_line']/form//field[@name='route_id']" position="replace">-->
+<!--                <field name="route_id" options="{'no_create': True}" required="True"/>-->
 <!--            </xpath>-->
+<!--            <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="replace">-->
+<!--                <field name="route_id" options="{'no_create': True}" required="True"/>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
+                <field name="direct_sale"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                <field name="direct_sale"/>
+            </xpath>
 
         </field>
     </record>

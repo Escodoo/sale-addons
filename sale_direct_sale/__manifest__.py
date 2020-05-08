@@ -15,8 +15,8 @@
         'sale_margin',
         'sale_margin_supplierinfo_cost',
         'product_pricelist_supplierinfo',
-        'stock_picking_sale_order_link',
-        'stock_dropshipping_from_sale_order'
+        # 'stock_picking_sale_order_link',
+        # 'stock_dropshipping_from_sale_order'
     ],
     'data': [
         'views/sale_order.xml',
