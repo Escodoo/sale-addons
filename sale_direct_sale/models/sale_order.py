@@ -8,6 +8,7 @@ class SaleOrder(models.Model):
 
     _inherit = 'sale.order'
 
+    # TODO: Don't work correctly when product invoice policy is Delivered Quantities.
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()
         for record in self:

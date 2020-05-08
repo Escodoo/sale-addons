@@ -6,7 +6,7 @@
 Sale Direct Sale
 ================
 
-This module enable to create sale order for invoicing and delivery direct supplier.
+This module enable to configure each sale order line is direct sale or not. Direct Sale is a type of sale when invoicing and delivery make by one Supplier.
 
 Installation
 ============
@@ -31,7 +31,7 @@ Usage
 
 To use this module, you need to:
 
-#. Go to ...
+#. If stock module is installed please install stock_dropshipping_from_sale_order module for the stock picking  is generated correcly.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -43,7 +43,7 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* ...
+* Don't work correctly when product invoice policy is Delivered Quantities.
 
 Bug Tracker
 ===========
