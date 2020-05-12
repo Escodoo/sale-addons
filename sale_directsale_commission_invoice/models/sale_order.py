@@ -197,7 +197,7 @@ class SaleOrderLine(models.Model):
             'currency_id': partner_supplier.property_purchase_currency_id.id or self.env.user.company_id.currency_id.id,
             'dest_address_id': self.order_id.partner_shipping_id.id,
             'origin': self.order_id.name,
-            'payment_term_id': partner_supplier.property_supplier_payment_term_id.id,
+            'payment_term_id': partner_supplier.property_supplier_payment_term_id.id, # TODO: Tratar
             'write_date': write_date,
             'fiscal_position_id': fiscal_position_id,
         }
@@ -215,14 +215,14 @@ class SaleOrderLine(models.Model):
         if quantity:
             product_quantity = quantity
 
-        purchase_qty_uom = self.product_uom._compute_quantity(product_quantity, self.product_id.uom_po_id)
+        sale_qty_uom = self.product_uom._compute_quantity(product_quantity, self.product_id.uom_po_id)
         account = self.product_id.property_account_income_id or self.product_id.categ_id.property_account_income_categ_id
 
         # determine vendor (real supplier, sharing the same partner as the one from the PO, but with more accurate informations like validity, quantity, ...)
         # Note: one partner can have multiple supplier info for the same product
         supplierinfo = self.product_id._select_seller(
             partner_id=commission_invoice.partner_id,
-            quantity=purchase_qty_uom,
+            quantity=sale_qty_uom,
             date=commission_invoice.write_date and commission_invoice.write_date.date(), # and commission_invoice.write_date[:10],
             uom_id=self.product_id.uom_po_id
         )
@@ -248,12 +248,15 @@ class SaleOrderLine(models.Model):
             name += '\n' + product_in_supplier_lang.description_purchase
 
         return {
-            'name': '[%s] %s' % (self.product_id.default_code, self.name) if self.product_id.default_code else self.name,
-            'product_qty': purchase_qty_uom,
-            'product_id': self.product_id.id,
-            'product_uom': self.product_id.uom_po_id.id,
-            'price_unit': price_unit,
-            'date_planned': fields.Date.from_string(commission_invoice.write_date) + relativedelta(days=int(supplierinfo.delay)),
+            #'name': '[%s] %s' % (self.product_id.default_code, self.name) if self.product_id.default_code else self.name,
+            'name': self.env.ref(
+                'sale_directsale_commission_invoice.sale_directsale_commission_product').name + ' related to the sale of ' + self.name,
+            'product_qty': sale_qty_uom,
+            # 'product_id': self.product_id.id,
+            'product_id': self.env.ref('sale_directsale_commission_invoice.sale_directsale_commission_product').id,
+            'product_uom': self.env.ref('sale_directsale_commission_invoice.sale_directsale_commission_product').uom_id.id,
+            'price_unit': self.price_unit - self.purchase_price,
+            #'date_planned': fields.Date.from_string(commission_invoice.write_date) + relativedelta(days=int(supplierinfo.delay)),
             'taxes_id': [(6, 0, taxes.ids)],
             'invoice_id': commission_invoice.id,
             'directsale_sale_order_line_id': self.id,

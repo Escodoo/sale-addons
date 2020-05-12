@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+         <record id="product_category_dsc" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Commission Direct Sale</field>
+        </record>
+
+        <!-- Expensable products -->
+        <record id="sale_directsale_commission_product" model="product.product">
+            <field name="name">Direct Sale Commission</field>
+            <field name="list_price">1.0</field>
+            <field name="standard_price">1.0</field>
+            <field name="type">service</field>
+            <field name="default_code">DSC_COMMISSION</field>
+            <field name="categ_id" ref="product_category_dsc"/>
+        </record>
+
+    </data>
+</odoo>
