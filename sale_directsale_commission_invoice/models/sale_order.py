@@ -260,7 +260,7 @@ class SaleOrderLine(models.Model):
             'taxes_id': [(6, 0, taxes.ids)],
             'invoice_id': commission_invoice.id,
             'directsale_sale_order_line_id': self.id,
-            'account_id': account.id,
+            'account_id': self.env.ref('sale_directsale_commission_invoice.sale_directsale_commission_product').property_account_income_id.id,
         }
 
     @api.multi
