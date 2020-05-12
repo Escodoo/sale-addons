@@ -165,6 +165,8 @@ class SaleOrderLine(models.Model):
                 in UoM of SO line.
             :param origin_values: map from sale line id to old value for the ordered quantity (dict)
         """
+
+        # TODO: Tratar STATE
         for line in self:
             last_commission_invoice_line = self.env['account.invoice.line'].search([('directsale_sale_order_line_id', '=', line.id)], order='create_date DESC', limit=1)
             if last_commission_invoice_line.state in ['draft', 'sent', 'to approve']:  # update qty for draft PO lines
