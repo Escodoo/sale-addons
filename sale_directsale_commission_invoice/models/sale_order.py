@@ -216,7 +216,11 @@ class SaleOrderLine(models.Model):
             product_quantity = quantity
 
         sale_qty_uom = self.product_uom._compute_quantity(product_quantity, self.product_id.uom_po_id)
-        account = self.product_id.property_account_income_id or self.product_id.categ_id.property_account_income_categ_id
+
+        # account = self.product_id.property_account_income_id or self.product_id.categ_id.property_account_income_categ_id
+        account = self.env.ref(
+            'sale_directsale_commission_invoice.sale_directsale_commission_product').property_account_income_id.id or self.env.ref(
+            'sale_directsale_commission_invoice.sale_directsale_commission_product').property_account_income_categ_id.id
 
         # determine vendor (real supplier, sharing the same partner as the one from the PO, but with more accurate informations like validity, quantity, ...)
         # Note: one partner can have multiple supplier info for the same product
@@ -233,10 +237,10 @@ class SaleOrderLine(models.Model):
 
         # compute unit price
         price_unit = 0.0
-        if supplierinfo:
-            price_unit = self.env['account.tax'].sudo()._fix_tax_included_price_company(supplierinfo.price, self.product_id.supplier_taxes_id, taxes, self.company_id)
-            if commission_invoice.currency_id and supplierinfo.currency_id != commission_invoice.currency_id:
-                price_unit = supplierinfo.currency_id.compute(price_unit, commission_invoice.currency_id)
+        # if supplierinfo:
+        #     price_unit = self.env['account.tax'].sudo()._fix_tax_included_price_company(supplierinfo.price, self.product_id.supplier_taxes_id, taxes, self.company_id) # TODO: Avaliar e tratar
+        #     if commission_invoice.currency_id and supplierinfo.currency_id != commission_invoice.currency_id:
+        #         price_unit = supplierinfo.currency_id.compute(price_unit, commission_invoice.currency_id)
 
         # purchase line description in supplier lang
         product_in_supplier_lang = self.product_id.with_context({
@@ -250,8 +254,9 @@ class SaleOrderLine(models.Model):
         return {
             #'name': '[%s] %s' % (self.product_id.default_code, self.name) if self.product_id.default_code else self.name,
             'name': self.env.ref(
-                'sale_directsale_commission_invoice.sale_directsale_commission_product').name + ' related to the sale of ' + self.name,
-            'product_qty': sale_qty_uom,
+                'sale_directsale_commission_invoice.sale_directsale_commission_product').name + ' related to the sale of\n' + self.name,
+            'quantity': self.qty_to_invoice,
+            # 'product_qty': sale_qty_uom,
             # 'product_id': self.product_id.id,
             'product_id': self.env.ref('sale_directsale_commission_invoice.sale_directsale_commission_product').id,
             'product_uom': self.env.ref('sale_directsale_commission_invoice.sale_directsale_commission_product').uom_id.id,
@@ -260,7 +265,7 @@ class SaleOrderLine(models.Model):
             'taxes_id': [(6, 0, taxes.ids)],
             'invoice_id': commission_invoice.id,
             'directsale_sale_order_line_id': self.id,
-            'account_id': self.env.ref('sale_directsale_commission_invoice.sale_directsale_commission_product').property_account_income_id.id,
+            'account_id': account,
         }
 
     @api.multi
