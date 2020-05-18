@@ -11,6 +11,7 @@
     'website': 'www.escodoo.com.br',
     'depends': [
         'sale_margin',
+        'purchase',
     ],
     'data': [
         'views/sale_order_line.xml',
