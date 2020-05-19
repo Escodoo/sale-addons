@@ -46,7 +46,7 @@
             <form string="Settlement Direct Sale" create="false">
                 <header>
                     <button string="Make invoice"
-                            attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', '!=', 'agent')]}"
+                            attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', 'not in',['agent','supplier'])]}"
                             class="oe_highlight"
                             type="object"
                             name="action_invoice" />

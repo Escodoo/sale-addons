@@ -10,27 +10,16 @@ class SaleCommissionMakeSettle(models.TransientModel):
 
     _inherit = 'sale.commission.make.settle'
 
-
-    # @api.multi
-    # def action_settle(self):
-    #     res = super(SaleCommissionMakeSettle, self).action_settle()
-    #     if res.get('agent_line_obj', True):
-    #         agent_line_obj = self.env['account.invoice.line.agent']
-    #         if not self.agents:
-    #             self.agents = self.env['res.partner'].search(
-    #                 [('agent', '=', True),('agent.agent_type', '!=', 'directsale')])
-    #     return res
-
     @api.multi
     def action_settle(self):
         self.ensure_one()
-        agent_line_obj = self.env['account.invoice.line.agent'].search([('agent.agent_type', '!=', 'directsale')])
+        agent_line_obj = self.env['account.invoice.line.agent']
         settlement_obj = self.env['sale.commission.settlement']
         settlement_line_obj = self.env['sale.commission.settlement.line']
         settlement_ids = []
         if not self.agents:
             self.agents = self.env['res.partner'].search(
-                [('agent', '=', True),('agent_type', '!=', 'directsale')])
+                [('agent', '=', True),('agent_type', 'in',['agent','supplier'])])
         date_to = self.date_to
         for agent in self.agents:
             date_to_agent = self._get_period_start(agent, date_to)
@@ -78,5 +67,30 @@ class SaleCommissionMakeSettle(models.TransientModel):
                 'domain': [['id', 'in', settlement_ids]],
             }
 
+        else:
+            return {'type': 'ir.actions.act_window_close'}
+
+    @api.multi
+    def button_create(self):
+        self.ensure_one()
+        if not self.settlements:
+            self.settlements = self.env['sale.commission.settlement'].search([
+                ('state', '=', 'settled'),
+                ('agent_type', 'in',['agent','supplier']),
+                ('company_id', '=', self.journal.company_id.id)
+            ])
+        self.settlements.make_invoices(
+            self.journal, self.product, date=self.date)
+        # go to results
+        if len(self.settlements):
+            return {
+                'name': _('Created Invoices'),
+                'type': 'ir.actions.act_window',
+                'views': [[False, 'list'], [False, 'form']],
+                'res_model': 'account.invoice',
+                'domain': [
+                    ['id', 'in', [x.invoice.id for x in self.settlements]],
+                ],
+            }
         else:
             return {'type': 'ir.actions.act_window_close'}

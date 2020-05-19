@@ -70,12 +70,17 @@ class SaleOrderLineAgent(models.Model):
 
     def _skip_settlement(self):
         """This function should return if the commission can be payed.
-        #
-        # :return: bool
-        # """
-        # self.ensure_one()
+
+         :return: bool
+         """
+        self.ensure_one()
+
+        # TODO: Talvez seja valido usar algo parecido quando tiver um
+        #   controle de pagamento de vendas direta baseada na venda
+
         # return (
         #     self.commission.invoice_state == 'paid' and
         #     self.invoice.state != 'paid'
         # ) or (self.invoice.state not in ('open', 'paid'))
-        return False
+
+        return (self.object_id.directsale != True)

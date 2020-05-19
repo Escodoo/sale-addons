@@ -36,7 +36,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         comodel_name='sale.ds.commission.settlement',
         relation="sale_ds_commission_make_invoice_settlement_rel",
         column1='wizard_id', column2='settlement_id',
-        domain="[('state', '=', 'settled'),('agent_type', '=', 'agent'),"
+        domain="[('state', '=', 'settled'),('agent_type', 'in',['agent','supplier']),"
                "('company_id', '=', company_id)]",
         default=_default_settlements)
     from_settlement = fields.Boolean(default=_default_from_settlement)
@@ -48,7 +48,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         if not self.settlements:
             self.settlements = self.env['sale.ds.commission.settlement'].search([
                 ('state', '=', 'settled'),
-                ('agent_type', '=', 'agent'),
+                ('agent_type', 'in',['agent','supplier']),
                 ('company_id', '=', self.journal.company_id.id)
             ])
         self.settlements.make_invoices(
