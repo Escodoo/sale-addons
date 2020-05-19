@@ -4,9 +4,9 @@
 from odoo import models, fields, api, _
 
 
-class SaleCommissionMakeSettle(models.TransientModel):
+class SaleCommissionMakeInvoice(models.TransientModel):
 
-    _inherit = 'sale.commission.make.settle'
+    _inherit = 'sale.commission.make.invoice'
 
     def _default_settlements(self):
         return self.env.context.get('settlement_ids', [])
@@ -18,3 +18,28 @@ class SaleCommissionMakeSettle(models.TransientModel):
         domain="[('state', '=', 'settled'),('agent_type', 'in',['agent','supplier']),"
                "('company_id', '=', company_id)]",
         default=_default_settlements)
+
+    @api.multi
+    def button_create(self):
+        self.ensure_one()
+        if not self.settlements:
+            self.settlements = self.env['sale.commission.settlement'].search([
+                ('state', '=', 'settled'),
+                ('agent_type', 'in', ['agent', 'supplier']),
+                ('company_id', '=', self.journal.company_id.id)
+            ])
+        self.settlements.make_invoices(
+            self.journal, self.product, date=self.date)
+        # go to results
+        if len(self.settlements):
+            return {
+                'name': _('Created Invoices'),
+                'type': 'ir.actions.act_window',
+                'views': [[False, 'list'], [False, 'form']],
+                'res_model': 'account.invoice',
+                'domain': [
+                    ['id', 'in', [x.invoice.id for x in self.settlements]],
+                ],
+            }
+        else:
+            return {'type': 'ir.actions.act_window_close'}
