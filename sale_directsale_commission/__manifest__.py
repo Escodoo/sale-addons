@@ -12,10 +12,10 @@
     'depends': [
         'sale_commission',
         'sale_directsale',
+        'sale_commission_supplier_agent_type',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/sale_commission_settlement.xml',
         'views/sale_commission_settlement_view.xml',
         'wizards/wizard_settle.xml',
         'wizards/wizard_invoice.xml',
