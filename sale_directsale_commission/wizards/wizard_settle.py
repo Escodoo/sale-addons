@@ -11,7 +11,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
     date_to = fields.Date('Up to', required=True, default=fields.Date.today())
     agents = fields.Many2many(
         comodel_name='res.partner',
-        domain="[('agent', '=', True), ('agent.agent_type', '=', 'directsale')]"
+        domain="[('agent', '=', True), ('agent.agent_type', '=', 'supplier')]"
     )
 
     def _get_period_start(self, agent, date_to):
@@ -71,13 +71,16 @@ class SaleCommissionMakeSettle(models.TransientModel):
     @api.multi
     def action_settle(self):
         self.ensure_one()
-        agent_line_obj = self.env['sale.order.line.agent'].search([('agent.agent_type', '=', 'directsale')])
+        # agent_line_obj = self.env['sale.order.line.agent'].search([('agent.agent_type', '=', 'supplier')])
+        agent_line_obj = self.env['sale.order.line.agent']
         settlement_obj = self.env['sale.ds.commission.settlement']
         settlement_line_obj = self.env['sale.ds.commission.settlement.line']
         settlement_ids = []
         if not self.agents:
+            # self.agents = self.env['res.partner'].search(
+            #     [('agent', '=', True),('agent_type', '=', 'supplier')])
             self.agents = self.env['res.partner'].search(
-                [('agent', '=', True),('agent_type', '=', 'directsale')])
+                [('agent', '=', True)])
         date_to = self.date_to
         for agent in self.agents:
             date_to_agent = self._get_period_start(agent, date_to)

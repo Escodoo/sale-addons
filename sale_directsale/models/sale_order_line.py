@@ -8,7 +8,7 @@ class SaleOrderLine(models.Model):
 
     _inherit = 'sale.order.line'
 
-    direct_sale = fields.Boolean(
+    directsale = fields.Boolean(
         store=True,
         string='Direct Sale',
     )

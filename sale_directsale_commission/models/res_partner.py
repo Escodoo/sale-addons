@@ -9,7 +9,4 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     agent_type = fields.Selection(
-        selection_add=[('directsale', 'Direct Sale')])
-
-    # settlement = fields.Selection(
-    #     selection_add=[('daily', 'Daily')])
+        selection_add=[('supplier', 'Supplier')])

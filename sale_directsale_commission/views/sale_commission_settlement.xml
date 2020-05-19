@@ -11,11 +11,10 @@
         <field name="arch" type="xml">
             <button name="action_invoice" position="replace">
                 <button string="Make invoice"
-                            attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', 'not in',['agent','directsale'])]}"
+                            attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', 'not in',['agent','supplier'])]}"
                             class="oe_highlight"
                             type="object"
-                            name="action_invoice" />
-
+                            name="action_invoice"/>
             </button>
         </field>
     </record>

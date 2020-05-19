@@ -11,9 +11,11 @@
     'website': 'www.escodoo.com.br',
     'depends': [
         'sale_commission',
+        'sale_directsale',
     ],
     'data': [
-        # 'views/sale_commission_settlement.xml',
+        'security/ir.model.access.csv',
+        'views/sale_commission_settlement.xml',
         'views/sale_commission_settlement_view.xml',
         'wizards/wizard_settle.xml',
         'wizards/wizard_invoice.xml',
