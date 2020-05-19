@@ -17,9 +17,12 @@
 
     ],
     'data': [
+        'views/sale_directsale_commission_profile.xml',
+        'data/product_data.xml',
         'views/product_template.xml',
         'views/sale_order.xml',
     ],
     'demo': [
+        'demo/sale_directsale_commission_profile.xml',
     ],
 }

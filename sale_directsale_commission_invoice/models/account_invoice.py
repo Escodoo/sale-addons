@@ -42,5 +42,5 @@ class AccountInvoiceLine(models.Model):
 
     _inherit = 'account.invoice.line'
 
-    directsale_sale_order_id = fields.Many2one(related='directsale_sale_order_line_id.order_id', string="Sale Order", store=True, readonly=True)
-    directsale_sale_order_line_id = fields.Many2one('sale.order.line', string="Origin Sale Item", index=True)
+    directsale_sale_order_id = fields.Many2one(related='sale_line_id.order_id', string="Sale Order", store=True, readonly=True)
+    sale_line_id = fields.Many2one('sale.order.line', string="Origin Sale Item", index=True)

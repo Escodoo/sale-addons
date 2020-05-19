@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Marcel Savegnago - Escodoo
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="sale_commission_settlement_form_view">
+        <field name="name">sale.commission.settlement.form (in sale_directsale_commission)</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+        <field name="arch" type="xml">
+            <button name="action_invoice" position="replace">
+                <button string="Make invoice"
+                            attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', 'not in',['agent','directsale'])]}"
+                            class="oe_highlight"
+                            type="object"
+                            name="action_invoice" />
+
+            </button>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_commission_settlement_tree_view">
+        <field name="name">sale.commission.settlement.tree (in sale_directsale_commission)</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_tree"/>
+        <field name="arch" type="xml">
+            <field name="agent" position="after">
+                <field name="agent_type"/>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>
+
+

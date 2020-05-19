@@ -4,6 +4,9 @@
 from odoo import api, fields, models, _
 
 
-class SaleOrderLine(models.Model):
+class ResPartner(models.Model):
 
-    _inherit = 'sale.order.line'
+    _inherit = 'res.partner'
+
+    settlement = fields.Selection(
+        selection_add=[('daily', 'Daily')])
