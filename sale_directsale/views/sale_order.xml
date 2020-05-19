@@ -9,30 +9,14 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-<!--            <xpath expr="//field[@name='order_line']/form//field[@name='route_id']" position="replace">-->
-<!--                <field name="route_id" options="{'no_create': True}" required="True"/>-->
-<!--            </xpath>-->
-<!--            <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="replace">-->
-<!--                <field name="route_id" options="{'no_create': True}" required="True"/>-->
-<!--            </xpath>-->
             <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
-                <field name="direct_sale"/>
+                <field name="directsale"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
-                <field name="direct_sale"/>
+                <field name="directsale"/>
             </xpath>
-<!--            <xpath expr="//button[@name='action_quotation_send']" position="before">-->
-<!--                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Commission Invoice"-->
-<!--                    type="action" class="btn-success"-->
-<!--                    attrs="{'invisible': [('invoice_status', '!=', 'invoiced')]}"/>-->
-<!--                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"-->
-<!--                    type="action" context="{'default_advance_payment_method': 'percentage'}"-->
-<!--                    attrs="{'invisible': ['|',('invoice_status', '!=', 'no'), ('state', '!=', 'sale')]}"/>-->
-<!--            </xpath>-->
-
         </field>
     </record>
-
 
 
 </odoo>

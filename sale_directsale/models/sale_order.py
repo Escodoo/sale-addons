@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_confirm()
         for record in self:
             for line in record.order_line:
-                if line.direct_sale:
+                if line.directsale:
                     line.invoice_status = 'invoiced'
                     line.qty_to_invoice = 0
                     line.qty_invoiced = line.product_uom_qty
