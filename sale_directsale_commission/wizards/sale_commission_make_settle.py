@@ -69,28 +69,3 @@ class SaleCommissionMakeSettle(models.TransientModel):
 
         else:
             return {'type': 'ir.actions.act_window_close'}
-
-    @api.multi
-    def button_create(self):
-        self.ensure_one()
-        if not self.settlements:
-            self.settlements = self.env['sale.commission.settlement'].search([
-                ('state', '=', 'settled'),
-                ('agent_type', 'in',['agent','supplier']),
-                ('company_id', '=', self.journal.company_id.id)
-            ])
-        self.settlements.make_invoices(
-            self.journal, self.product, date=self.date)
-        # go to results
-        if len(self.settlements):
-            return {
-                'name': _('Created Invoices'),
-                'type': 'ir.actions.act_window',
-                'views': [[False, 'list'], [False, 'form']],
-                'res_model': 'account.invoice',
-                'domain': [
-                    ['id', 'in', [x.invoice.id for x in self.settlements]],
-                ],
-            }
-        else:
-            return {'type': 'ir.actions.act_window_close'}
