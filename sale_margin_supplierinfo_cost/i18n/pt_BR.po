@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_margin_supplierinfo_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-03 01:35+0000\n"
+"PO-Revision-Date: 2020-06-02 22:55-0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language: pt_BR\n"
+
+#. module: sale_margin_supplierinfo_cost
+#: model:ir.model.fields,field_description:sale_margin_supplierinfo_cost.field_sale_order_line__seller_count
+msgid "Number of vendor"
+msgstr "Número de fornecedores"
+
+#. module: sale_margin_supplierinfo_cost
+#: model:ir.model.fields,help:sale_margin_supplierinfo_cost.field_sale_order_line__seller_count
+msgid "Number of vendor prices for this product"
+msgstr "Número de preços de fornecedores para este produto"
+
+#. module: sale_margin_supplierinfo_cost
+#: model:ir.model.fields,field_description:sale_margin_supplierinfo_cost.field_sale_order_line__product_tmpl_id
+msgid "Product template"
+msgstr "Amostra Produto"
+
+#. module: sale_margin_supplierinfo_cost
+#: model:ir.model,name:sale_margin_supplierinfo_cost.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linha do Pedido de Venda"
+
+#. module: sale_margin_supplierinfo_cost
+#: model:ir.model.fields,field_description:sale_margin_supplierinfo_cost.field_sale_order_line__seller_id
+msgid "Seller"
+msgstr "Vendedor"
+
+#. module: sale_margin_supplierinfo_cost
+#: model:ir.model.fields,field_description:sale_margin_supplierinfo_cost.field_sale_order_line__seller_price
+msgid "Seller Price"
+msgstr "Preço do Vendedor"
