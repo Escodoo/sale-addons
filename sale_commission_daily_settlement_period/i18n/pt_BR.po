@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_daily_settlement_period
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-03 01:36+0000\n"
+"PO-Revision-Date: 2020-06-02 22:48-0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language: pt_BR\n"
+
+#. module: sale_commission_daily_settlement_period
+#: selection:res.partner,settlement:0
+msgid "Annual"
+msgstr "Anual"
+
+#. module: sale_commission_daily_settlement_period
+#: model:ir.model,name:sale_commission_daily_settlement_period.model_res_partner
+msgid "Contact"
+msgstr "Contato"
+
+#. module: sale_commission_daily_settlement_period
+#: selection:res.partner,settlement:0
+msgid "Daily"
+msgstr "Diariamente"
+
+#. module: sale_commission_daily_settlement_period
+#: selection:res.partner,settlement:0
+msgid "Monthly"
+msgstr "Mensal"
+
+#. module: sale_commission_daily_settlement_period
+#: selection:res.partner,settlement:0
+msgid "Quarterly"
+msgstr "Trimestral"
+
+#. module: sale_commission_daily_settlement_period
+#: selection:res.partner,settlement:0
+msgid "Semi-annual"
+msgstr "Semi Anual"
+
+#. module: sale_commission_daily_settlement_period
+#: model:ir.model.fields,field_description:sale_commission_daily_settlement_period.field_res_partner__settlement
+#: model:ir.model.fields,field_description:sale_commission_daily_settlement_period.field_res_users__settlement
+msgid "Settlement period"
+msgstr "Período de liquidação"
+
+#. module: sale_commission_daily_settlement_period
+#: code:addons/sale_commission_daily_settlement_period/models/sale_commission_make_settle.py:33
+#: code:addons/sale_commission_daily_settlement_period/models/sale_commission_make_settle.py:49
+#, python-format
+msgid "Settlement period not valid."
+msgstr "Período de liquidação não válido."
+
+#. module: sale_commission_daily_settlement_period
+#: model:ir.model,name:sale_commission_daily_settlement_period.model_sale_commission_make_settle
+msgid "Wizard for settling commissions in invoices"
+msgstr "Assistente para liquidação de comissões em faturas"
