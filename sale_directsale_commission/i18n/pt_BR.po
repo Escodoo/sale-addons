@@ -321,7 +321,7 @@ msgstr "Selecione a data em que deseja fazer os acordos:"
 #: model:ir.ui.menu,name:sale_directsale_commission.menu_agents_settlement
 #: model_terms:ir.ui.view,arch_db:sale_directsale_commission.view_settled_wizard
 msgid "Settle Direct Sale commissions"
-msgstr "Resolver comissões de Venda Direta"
+msgstr "Abater comissões de Venda Direta"
 
 #. module: sale_directsale_commission
 #: model:ir.model.fields,field_description:sale_directsale_commission.field_sale_order_line_agent__settled
