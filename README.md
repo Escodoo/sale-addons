@@ -17,6 +17,13 @@ Modules used to extend or customize Sale app functions.
 
 [//]: # (addons)
 
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[l10n_br_sale_hide_tax_report](l10n_br_sale_hide_tax_report/) | 14.0.1.0.0 |  | Brazilian Localization Sale Hide Tax Report
+[sale_invoice_plan_editable](sale_invoice_plan_editable/) | 14.0.1.0.0 |  | This module allows you to change the invoice plan while the invoice_plan line is not invoiced.
+
 [//]: # (end addons)
 
 <!-- prettier-ignore-end -->
