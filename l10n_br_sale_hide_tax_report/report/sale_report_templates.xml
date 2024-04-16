@@ -49,28 +49,28 @@
         </xpath>
         <!-- HIDDE COLUMN TH_TAXES -->
         <xpath
-            expr="//table[@class='table table-sm o_main_table']/thead//th[@name='th_taxes']"
+            expr="//table[hasclass('table', 'table-sm', 'o_main_table')]/thead//th[@name='th_taxes']"
             position="attributes"
         >
             <attribute name="class">d-none</attribute>
         </xpath>
         <!-- HIDDE COLUMN TD_TAXES -->
         <xpath
-            expr="//table[@class='table table-sm o_main_table']/tbody//td[@name='td_taxes']"
+            expr="//table[hasclass('table', 'table-sm','o_main_table')]/tbody//td[@name='td_taxes']"
             position="attributes"
         >
             <attribute name="class">d-none</attribute>
         </xpath>
         <!-- HIDDEN SPAN LINE.PRICE_SUBTOTAL (NO INCLUDE TAXES) -->
         <xpath
-            expr="//table[@class='table table-sm o_main_table']/tbody//span[@t-field='line.price_subtotal']"
+            expr="//table[hasclass('table', 'table-sm', 'o_main_table')]/tbody//span[@t-field='line.price_subtotal']"
             position="attributes"
         >
             <attribute name="class">d-none</attribute>
         </xpath>
         <!-- REMOVE GROUPS IN LINE.PRICE_TOTAL (INCLUDE TAXES) -->
         <xpath
-            expr="//table[@class='table table-sm o_main_table']/tbody//span[@t-field='line.price_total']"
+            expr="//table[hasclass('table', 'table-sm', 'o_main_table')]/tbody//span[@t-field='line.price_total']"
             position="attributes"
         >
             <attribute name="groups" />
