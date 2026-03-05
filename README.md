@@ -1,4 +1,6 @@
 
+
+# Sale Addons
 <!-- /!\ Non OCA Context : Set here the badge of your runbot / runboat instance. -->
 [![Pre-commit Status](https://github.com/Escodoo/sale-addons/actions/workflows/pre-commit.yml/badge.svg?branch=17.0)](https://github.com/Escodoo/sale-addons/actions/workflows/pre-commit.yml?query=branch%3A17.0)
 [![Build Status](https://github.com/Escodoo/sale-addons/actions/workflows/test.yml/badge.svg?branch=17.0)](https://github.com/Escodoo/sale-addons/actions/workflows/test.yml?query=branch%3A17.0)
@@ -7,15 +9,17 @@
 
 <!-- /!\ do not modify above this line -->
 
-# Escodoo Sale Addons
-
-Escodoo add-ons used to extend or customize Odoo Sale app functions.
+Odoo Sale Addons
 
 <!-- /!\ do not modify below this line -->
 
 <!-- prettier-ignore-start -->
 
+[//]: # (addons)
 
+This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+
+[//]: # (end addons)
 
 <!-- prettier-ignore-end -->
 
