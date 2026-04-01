@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_blanket_order_form" model="ir.ui.view">
+        <field
+            name="name"
+        >view_blanket_order_form (in sale_blanket_order_custom)</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//page[@name='order_lines']//field[@name='line_ids']//field[@name='analytic_distribution']"
+                position="after"
+            >
+                <field name="analytic_account_id" optional="hide" />
+            </xpath>
+
+            <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="mis_cash_flow_forecast_line_count" invisible="1" />
+                <field name="account_analytic_line_count" invisible="1" />
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    icon="fa-area-chart"
+                    name="action_show_mis_forecast"
+                    help="MIS Builder Cash Flow Forecast"
+                    attrs="{'invisible': [('mis_cash_flow_forecast_line_count', '=', 0)]}"
+                >
+                    <div class="o_form_field o_stat_info">
+                        <span class="o_stat_text">Cash Flow Forecast
+                        </span>
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    icon="fa-area-chart"
+                    name="action_show_account_analytic_line"
+                    help="Account Analytic Itens"
+                    attrs="{'invisible': [('account_analytic_line_count', '=', 0)]}"
+                >
+                    <div class="o_form_field o_stat_info">
+                        <span class="o_stat_text">Account Analytic Itens
+                        </span>
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr='/form/sheet/notebook' position="before">
+                <div attrs="{'readonly': [('sale_count', '>', 0)]}">
+                    <field name="use_sale_order_plan" />
+                    <label for="use_sale_order_plan" />
+                </div>
+            </xpath>
+
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <field name="ip_sale_order_plan" invisible="1" />
+                <button
+                    name="%(action_view_sale_make_planned_order)d"
+                    string="Create Order by Plan"
+                    type="action"
+                    class="btn-primary"
+                    attrs="{'invisible': [('ip_sale_order_plan', '=', False)]}"
+                />
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page" position="after">
+                <page string="Product Cost Targets" name="blanket_product">
+                    <field name="order_product_ids">
+                        <tree name="order_product_tree" editable="bottom">
+                            <field
+                                name="product_id"
+                                domain="[('type', 'not in', ['service'])]"
+                            />
+                            <field name="quantity" />
+                            <field name="price_unit" />
+                            <field name="subtotal" />
+                            <!-- <field name="expected_date" /> -->
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <div class="oe_subtotal_footer_separator oe_inline">
+                            <label for="total_product_costs" string="Total" />
+                        </div>
+                        <field
+                            name="total_product_costs"
+                            nolabel="1"
+                            class="oe_subtotal_footer_separator"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </page>
+                <page string="Service Cost Targets" name="blanket_service">
+                    <field name="order_service_ids">
+                        <tree name="order_service_tree" editable="bottom">
+                            <field
+                                name="product_id"
+                                domain="[('type', 'in', ['service'])]"
+                            />
+                            <field name="quantity" />
+                            <field name="price_unit" />
+                            <field name="subtotal" />
+                            <!-- <field name="expected_date" /> -->
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <div class="oe_subtotal_footer_separator oe_inline">
+                            <label for="total_service_costs" string="Total" />
+                        </div>
+                        <field
+                            name="total_service_costs"
+                            nolabel="1"
+                            class="oe_subtotal_footer_separator"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </page>
+
+                <!-- <page
+                    string="Account Analytic Entries"
+                    name="analytic_lines"
+                    groups="analytic.group_analytic_accounting"
+                >
+                    <field
+                        name="account_analytic_line_ids"
+                        context="{'tree_view_ref':'analytic.view_account_analytic_line_tree'}"
+                    />
+                </page> -->
+
+                <page
+                    string="Sale Order Plan"
+                    name="order_plan"
+                    attrs="{'invisible': [('use_sale_order_plan', '=', False)]}"
+                >
+                    <button
+                        name="%(action_sale_create_order_plan)d"
+                        string="⇒ Create Sale Order Plan"
+                        type="action"
+                        class="oe_link"
+                        attrs="{'invisible': ['|', ('sale_order_plan_ids', '!=', []), ('sale_count', '>', 0)]}"
+                    />
+                    <button
+                        name="remove_order_plan"
+                        string="⇒ Remove Sale Order Plan"
+                        type="object"
+                        class="oe_link"
+                        attrs="{'invisible': ['|', ('sale_order_plan_ids', '=', []), ('sale_count', '>', 0)]}"
+                        confirm="Are you sure to remove this order plan?"
+                    />
+                    <field
+                        name="sale_order_plan_ids"
+                        context="{'tree_view_ref': 'view_sale_order_plan_tree'}"
+                        attrs="{'invisible': [('sale_order_plan_ids', '=', [])], 'readonly': [('sale_count', '>', 0)]}"
+                    />
+                </page>
+
+            </xpath>
+
+            <xpath expr="//field[@name='amount_total']" position="after">
+
+                <field
+                    name="total_product_costs"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                    attrs="{'invisible':[('total_costs','=',0)]}"
+                />
+                <field
+                    name="total_service_costs"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                    attrs="{'invisible':[('total_costs','=',0)]}"
+                />
+                <div
+                    class="oe_subtotal_footer_separator oe_inline"
+                    attrs="{'invisible':[('total_costs','=',0)]}"
+                >
+                    <label for="total_costs" />
+                </div>
+                <field
+                    name="total_costs"
+                    nolabel="1"
+                    class="oe_subtotal_footer_separator"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                    attrs="{'invisible':[('total_costs','=',0)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
