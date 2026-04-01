@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-08 15:07+0000\n"
+"PO-Revision-Date: 2024-01-08 12:09-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#. module: purchase_request_custom
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request__display_name
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request_line__display_name
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: purchase_request_custom
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request_line__estimated_cost
+msgid "Estimated Cost"
+msgstr "Custo Estimado"
+
+#. module: purchase_request_custom
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request_line__estimated_unit_cost
+msgid "Estimated Unit Cost"
+msgstr "Custo Unitário Estimado"
+
+#. module: purchase_request_custom
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request__id
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_request_custom
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request____last_update
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request_line____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: purchase_request_custom
+#: model:ir.model,name:purchase_request_custom.model_purchase_request
+msgid "Purchase Request"
+msgstr "Requisição de compra"
+
+#. module: purchase_request_custom
+#: model:ir.model,name:purchase_request_custom.model_purchase_request_line
+msgid "Purchase Request Line"
+msgstr "Linha de solicitação de compra"
+
+#. module: purchase_request_custom
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request_line__target_above
+msgid "Target Above"
+msgstr "Acima do Alvo"
+
+#. module: purchase_request_custom
+#: model:ir.model.fields,field_description:purchase_request_custom.field_purchase_request_line__target_value
+msgid "Target Unit Price"
+msgstr "Preço Unitário Alvo"

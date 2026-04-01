@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record model="ir.ui.view" id="purchase_request_form_view">
+        <field name="name">purchase.request.form (in purchase_request_custom)</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+        <field name="arch" type="xml">
+            <!-- Disable editing of the 'estimated_cost' field in the 'line_ids' field -->
+            <xpath
+                expr="//field[@name='line_ids']//tree//field[@name='estimated_cost']"
+                position="attributes"
+            >
+                <attribute name="readonly">1</attribute>
+            </xpath>
+
+            <!-- Set the required for 'analytic_distribution' in 'line_ids' to 'True' -->
+            <xpath
+                expr="//field[@name='line_ids']//tree//field[@name='analytic_distribution']"
+                position="attributes"
+            >
+                <attribute name="required">1</attribute>
+            </xpath>
+
+            <!-- Insert 'target_quantity' field after 'product_qty' in 'line_ids'-->
+            <xpath
+                expr="//field[@name='line_ids']//field[@name='product_qty']"
+                position="after"
+            >
+                <field
+                    name="target_quantity"
+                    optional="show"
+                    widget="badge"
+                    decoration-success="target_quantity &gt;= product_qty"
+                    decoration-danger="target_quantity &lt; product_qty"
+                />
+            </xpath>
+
+            <!-- Insert 'estimated_unit_cost' field before 'analytic_distribution' in
+            'line_ids' -->
+            <xpath
+                expr="//field[@name='line_ids']//tree//field[@name='analytic_distribution']"
+                position="before"
+            >
+                <field name="estimated_unit_cost" widget="monetary" />
+            </xpath>
+
+            <!-- Insert 'target_value and target_above' field after 'estimated_cost' in
+            'line_ids' -->
+            <xpath
+                expr="//field[@name='line_ids']//field[@name='estimated_unit_cost']"
+                position="after"
+            >
+                <field name="target_above" invisible="1" />
+                <field
+                    name="target_value"
+                    optional="show"
+                    widget="badge"
+                    decoration-success="target_above == False"
+                    decoration-danger="target_above == True"
+                />
+                <field name="target_above" optional="hide" />
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
