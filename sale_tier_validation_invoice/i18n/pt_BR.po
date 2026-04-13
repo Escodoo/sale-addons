@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_tier_validation_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-13 18:57+0000\n"
+"PO-Revision-Date: 2026-04-13 18:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_tier_validation_invoice
+#: model:ir.model.fields,field_description:sale_tier_validation_invoice.field_sale_order__invoice_tier_approved
+msgid "Invoice validation OK"
+msgstr "Validação para fatura concluída"
+
+#. module: sale_tier_validation_invoice
+#: model:ir.model.fields,help:sale_tier_validation_invoice.field_tier_definition__sale_validate_before_invoice
+msgid ""
+"If enabled, this definition applies only after the sales order is confirmed "
+"(sale/done): it creates reviews then and blocks Create invoice and invoicing "
+"until all such definitions are approved. If disabled, the definition follows "
+"the standard sale tier validation flow on draft/sent quotations (confirm "
+"order)."
+msgstr ""
+"Se marcado, esta definição aplica-se só após o pedido confirmado (venda/"
+"concluído): cria revisões nessa fase e impede «Criar fatura» e a faturação "
+"até todas estas definições estarem aprovadas. Se desmarcado, a definição "
+"segue o fluxo standard de validação por níveis em cotações rascunho/enviadas "
+"(confirmar pedido)."
+
+#. module: sale_tier_validation_invoice
+#: model:ir.model.fields,field_description:sale_tier_validation_invoice.field_tier_definition__sale_validate_before_invoice
+msgid "Validate before invoicing"
+msgstr "Validar antes de faturar"
+
+#. module: sale_tier_validation_invoice
+#: model:ir.model,name:sale_tier_validation_invoice.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venda"
+
+#. module: sale_tier_validation_invoice
+#. odoo-python
+#: code:addons/sale_tier_validation_invoice/models/sale_order.py:0
+#, python-format
+msgid ""
+"Sales order %(name)s is missing pre-invoice validation reviews. Request "
+"validation or wait for configuration."
+msgstr ""
+"O pedido de venda %(name)s não possui revisões de validação antes da fatura. "
+"Solicite a validação ou aguarde a configuração."
+
+#. module: sale_tier_validation_invoice
+#: model:ir.model,name:sale_tier_validation_invoice.model_tier_definition
+msgid "Tier Definition"
+msgstr "Definição de Nível"
+
+#. module: sale_tier_validation_invoice
+#. odoo-python
+#: code:addons/sale_tier_validation_invoice/models/sale_order.py:0
+#, python-format
+msgid ""
+"You cannot invoice sales order %(name)s until all pre-invoice validations "
+"are approved."
+msgstr ""
+"Não é possível faturar o pedido %(name)s até que todas as validações antes da "
+"fatura estejam aprovadas."
