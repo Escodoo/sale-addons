@@ -1,0 +1,549 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_blanket_order_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-02 11:54+0000\n"
+"PO-Revision-Date: 2026-04-02 11:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid ""
+"<span class=\"o_stat_text\">Account Analytic Itens\n"
+"                        </span>"
+msgstr ""
+"<span class=\"o_stat_text\">Itens Analíticos de Conta\n"
+"                        </span>"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid ""
+"<span class=\"o_stat_text\">Cash Flow Forecast\n"
+"                        </span>"
+msgstr ""
+"<span class=\"o_stat_text\">Previsão de Fluxo de Caixa\n"
+"                        </span>"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "Account Analytic Itens"
+msgstr "Itens Analíticos de Conta"
+
+#. module: sale_blanket_order_custom
+#. odoo-python
+#: code:addons/sale_blanket_order_custom/models/sale_blanket_orders.py:0
+#, python-format
+msgid "Account Analytic Line"
+msgstr "Linha Analítica da Conta"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__account_analytic_line_count
+msgid "Account Analytic Line Count"
+msgstr "Quantidade de Linhas Analíticas da Conta"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__amount_total
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__amount_total
+msgid "Amount Total"
+msgstr "Total"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_line__analytic_account_id
+msgid "Analytic Account"
+msgstr "Conta Analítica"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__account_analytic_line_ids
+msgid "Analytic Line"
+msgstr "Linha Analítica"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "Are you sure to remove this order plan?"
+msgstr "Tem certeza de que deseja remover este plano de pedido?"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,help:sale_blanket_order_custom.field_sale_blanket_order__ip_sale_order_plan
+msgid "At least one order plan line pending to create sale order"
+msgstr ""
+"Pelo menos uma linha de planejamento de pedido pendente para criar o pedido"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model,name:sale_blanket_order_custom.model_sale_blanket_order
+msgid "Blanket Order"
+msgstr "Pedido Guarda-Chuva"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model,name:sale_blanket_order_custom.model_sale_blanket_order_line
+msgid "Blanket Order Line"
+msgstr "Linha do Pedido Guarda-Chuva"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__order_product_ids
+msgid "Blanket Order Products Costs"
+msgstr "Custos de Produtos de Pedidos Guarda-Chuva"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__blanket_order_id
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__blanket_order_id
+msgid "Blanket Order Reference"
+msgstr "Referência do Pedido Guarda-Chuva"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__order_service_ids
+msgid "Blanket Order Services Costs"
+msgstr "Custos de Serviços de Pedidos Guarda-Chuva"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_create_order_plan
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_make_planned_order
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_blanket_order_custom
+#. odoo-python
+#: code:addons/sale_blanket_order_custom/models/sale_blanket_orders.py:0
+#, python-format
+msgid "Cash Flow Forecast - Sale Blanket Order"
+msgstr "Previsão de Fluxo de Caixa - Pedido Guarda-Chuva de Venda"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_make_planned_order
+msgid "Create All Remaining Orders"
+msgstr "Criar Todos os Pedidos Restantes"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_make_planned_order
+msgid "Create Next Order"
+msgstr "Criar Próximo Pedido"
+
+#. module: sale_blanket_order_custom
+#: model:ir.actions.act_window,name:sale_blanket_order_custom.action_sale_create_order_plan
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_create_order_plan
+msgid "Create Order Plan"
+msgstr "Criar Plano de Pedido"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "Create Order by Plan"
+msgstr "Criar Pedido pelo Plano"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__create_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__create_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__create_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__create_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_make_planned_order__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__create_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__create_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__create_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__create_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_make_planned_order__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields.selection,name:sale_blanket_order_custom.selection__sale_create_order_plan__interval_type__day
+msgid "Day"
+msgstr "Dia"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_make_planned_order__display_name
+msgid "Display Name"
+msgstr "Nome de Exibição"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__expected_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__expected_date
+msgid "Expected Date"
+msgstr "Data Prevista"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model,name:sale_blanket_order_custom.model_sale_create_order_plan
+msgid "Fillig order planning criteria"
+msgstr "Preenchimento de critérios de planejamento de pedidos"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__mis_cash_flow_forecast_line_ids
+msgid "Forecast Line"
+msgstr "Linha de Previsão"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__mis_cash_flow_forecast_line_count
+msgid "Forecast Line Count"
+msgstr "Quantidade de Linhas de Previsão"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__id
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__id
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__id
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__id
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_make_planned_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,help:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__ordered
+msgid "If this line already ordered"
+msgstr "Se você já tiver encomendado essa linha"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,help:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__to_order
+msgid "If this line is ready to create new order"
+msgstr "Se essa linha estiver pronta para criar um novo pedido"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__installment
+#: model:ir.model.fields.selection,name:sale_blanket_order_custom.selection__sale_blanket_order_sale_order_plan__order_type__installment
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Installment"
+msgstr "Parcela"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__installment_date
+msgid "Installment Date"
+msgstr "Data da Parcela"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__interval
+msgid "Interval"
+msgstr "Intervalo"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__interval_type
+msgid "Interval Type"
+msgstr "Tipo de Intervalo"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__last
+msgid "Last Installment"
+msgstr "Última Parcela"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_make_planned_order____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__write_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__write_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__write_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__write_uid
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_make_planned_order__write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__write_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__write_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__write_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__write_date
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_make_planned_order__write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,help:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__last
+msgid "Last installment will create order use remaining amount"
+msgstr "A última parcela criará um pedido de uso do valor restante"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "MIS Builder Cash Flow Forecast"
+msgstr "Previsão de Fluxo de Caixa do MIS Builder"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields.selection,name:sale_blanket_order_custom.selection__sale_create_order_plan__interval_type__month
+msgid "Month"
+msgstr "Mês"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__to_order
+msgid "Next Order"
+msgstr "Próximo Pedido"
+
+#. module: sale_blanket_order_custom
+#. odoo-python
+#: code:addons/sale_blanket_order_custom/models/sale_blanket_order_sale_order_plan.py:0
+#, python-format
+msgid "No matched order line for sale order"
+msgstr "Não há linha de pedido correspondente para pedido de venda"
+
+#. module: sale_blanket_order_custom
+#. odoo-python
+#: code:addons/sale_blanket_order_custom/wizard/sale_create_order_plan.py:0
+#, python-format
+msgid "Number Installment must greater than 1"
+msgstr "Número de parcelas deve ser maior que 1"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_create_order_plan__num_installment
+msgid "Number of Installment"
+msgstr "Número de Parcelas"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__ordered
+msgid "Order Created"
+msgstr "Pedido Criado"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__sale_order_ids
+msgid "Orders"
+msgstr "Pedidos"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_make_planned_order
+msgid ""
+"Orders will be created in draft for this installment\n"
+"                        so that you can review them before validation."
+msgstr ""
+"Os pedidos serão criados em rascunho para essa parcela\n"
+"                        para que você possa revisá-los antes da validação."
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__percent
+msgid "Percent"
+msgstr "Porcentagem"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__plan_date
+msgid "Plan Date"
+msgstr "Data do Plano"
+
+#. module: sale_blanket_order_custom
+#. odoo-python
+#: code:addons/sale_blanket_order_custom/models/sale_blanket_order_sale_order_plan.py:0
+#, python-format
+msgid ""
+"Plan quantity: %(plan_qty)s, exceeds orderable quantity: %(orderable_qty)s\n"
+"Product should be available before creating the order"
+msgstr ""
+"Quantidade planejada: %(plan_qty)s, excede a quantidade que pode ser pedida:"
+" %(orderable_qty)s\n"
+"O produto deve estar disponível antes de criar o pedido"
+
+#. module: sale_blanket_order_custom
+#. odoo-python
+#: code:addons/sale_blanket_order_custom/models/sale_blanket_orders.py:0
+#, python-format
+msgid "Please fill percentage for all order plan lines"
+msgstr "Preencha a porcentagem para todas as linhas do plano de pedido"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__price_unit
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__price_unit
+msgid "Price Unit"
+msgstr "Preço por Unidade"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__product_id
+msgid "Product"
+msgstr "Produto"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "Product Cost Targets"
+msgstr "Metas de Custo de Produtos"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__quantity
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__quantity
+msgid "Quantity"
+msgstr "Quantidade"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Quotations"
+msgstr "Cotações"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_form
+msgid "Related orders"
+msgstr "Pedidos Relacionados"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model,name:sale_blanket_order_custom.model_sale_blanket_order_product
+msgid "Sale Blanket Order Products Costs "
+msgstr "Custos de Produtos do Pedido Guarda-Chuva"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model,name:sale_blanket_order_custom.model_sale_blanket_order_service
+msgid "Sale Blanket Order Service Costs"
+msgstr "Custos de Serviços do Pedido Guarda-Chuva"
+
+#. module: sale_blanket_order_custom
+#: model:ir.actions.act_window,name:sale_blanket_order_custom.action_view_sale_make_planned_order
+msgid "Sale Order"
+msgstr "Pedido de Venda"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__sale_order_plan_ids
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "Sale Order Plan"
+msgstr "Plano de Pedidos de Venda"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__ip_sale_order_plan
+msgid "Sale Order Plan In Process"
+msgstr "Plano de Pedidos em Andamento"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model,name:sale_blanket_order_custom.model_sale_blanket_order_sale_order_plan
+msgid "Sale Order Planning Detail"
+msgstr "Detalhe do Planejamento do Pedido"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__sale_id
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_make_planned_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Sales Order"
+msgstr "Pedido de Venda"
+
+#. module: sale_blanket_order_custom
+#: model:ir.actions.act_window,name:sale_blanket_order_custom.action_sale_order_plan
+#: model:ir.ui.menu,name:sale_blanket_order_custom.menu_sale_order_plan
+msgid "Sales Order Plan"
+msgstr "Plano de Pedidos de Venda"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Sales Orders"
+msgstr "Pedidos de Venda"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Search Sales Order Plan Lines"
+msgstr "Pesquisar Linhas de Planejamento de Pedidos de Venda"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__product_id
+msgid "Service"
+msgstr "Serviço"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "Service Cost Targets"
+msgstr "Metas de Custo de Serviços"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__state
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_order_plan_filter
+msgid "Status"
+msgstr "Status"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_product__subtotal
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_service__subtotal
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,help:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__percent
+msgid "This percent will be used to calculate new quantity"
+msgstr "Esta porcentagem será usada para calcular a nova quantidade"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.actions.act_window,help:sale_blanket_order_custom.action_sale_order_plan
+msgid "This view show all available order plan line for reporting purposes"
+msgstr ""
+"Essa visualização mostra todas as linhas de plano de pedido disponíveis para"
+" fins de relatório"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_sale_create_order_plan
+msgid "This wizard help you quickly create order plan."
+msgstr "Esse assistente ajuda você a criar rapidamente um plano de pedido."
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "Total"
+msgstr "Total"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__total_costs
+msgid "Total Cost Target (Products Costs + Services Costs)"
+msgstr "Meta de Custo Total (Custos de Produtos + Custos de Serviços)"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__total_product_costs
+msgid "Total Product Cost Target"
+msgstr "Meta de Custo Total de Produtos"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__total_service_costs
+msgid "Total Service Cost Target"
+msgstr "Meta de Custo Total de Serviços"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order_sale_order_plan__order_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: sale_blanket_order_custom
+#. odoo-python
+#: code:addons/sale_blanket_order_custom/models/sale_blanket_orders.py:0
+#, python-format
+msgid "Use Order Plan selected, but no plan created"
+msgstr "Usar Plano de Pedido selecionado, mas nenhum plano criado"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields,field_description:sale_blanket_order_custom.field_sale_blanket_order__use_sale_order_plan
+msgid "Use Sale Order Plan"
+msgstr "Usar Plano de Pedido de Venda"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.actions.act_window,help:sale_blanket_order_custom.action_sale_order_plan
+msgid "View sales order plan lines"
+msgstr "Visualizar linhas de planejamento de pedidos de vendas"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model,name:sale_blanket_order_custom.model_sale_make_planned_order
+msgid "Wizard when create order by plan"
+msgstr "Assistente ao criar pedido por plano"
+
+#. module: sale_blanket_order_custom
+#: model:ir.model.fields.selection,name:sale_blanket_order_custom.selection__sale_create_order_plan__interval_type__year
+msgid "Year"
+msgstr "Ano"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "⇒ Create Sale Order Plan"
+msgstr "⇒ Criar Plano de Pedido de Venda"
+
+#. module: sale_blanket_order_custom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_custom.view_blanket_order_form
+msgid "⇒ Remove Sale Order Plan"
+msgstr "⇒ Remover Plano de Pedido de Venda"
