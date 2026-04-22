@@ -1,6 +1,7 @@
 # Copyright 2026 - TODAY, Escodoo
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import datetime
 from types import SimpleNamespace
 
 from odoo.exceptions import UserError
@@ -70,6 +71,33 @@ class FakeRevisionWizard:
 
 
 class TestSaleBlanketOrderRevision(TransactionCase):
+    def setUp(self):
+        super().setUp()
+        self.partner = self.env["res.partner"].create({"name": "Test Partner"})
+        self.product = self.env["product.product"].create(
+            {"name": "Test Product", "type": "consu"}
+        )
+        self.pricelist = self.env["product.pricelist"].search([], limit=1)
+        self.blanket_order = self.env["sale.blanket.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": self.pricelist.id,
+                "validity_date": datetime.date.today() + datetime.timedelta(days=1),
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": self.product.uom_id.id,
+                            "original_uom_qty": 10.0,
+                            "price_unit": 100.0,
+                        },
+                    )
+                ],
+            }
+        )
+
     def test_compute_all_quotations_invoiced(self):
         all_invoiced = SimpleNamespace(
             mapped=lambda _: [
@@ -191,3 +219,106 @@ class TestSaleBlanketOrderRevision(TransactionCase):
         self.assertAlmostEqual(new_line.price_unit, 110.0)
         self.assertEqual(old_line.contracted_quantity, 10.0)
         self.assertEqual(old_line.original_uom_qty, 4.0)
+
+    def test_update_blanket_order_lines_without_adjustment(self):
+        old_line = FakeWritable(
+            remaining_uom_qty=5.0,
+            original_uom_qty=8.0,
+            invoiced_uom_qty=2.0,
+            contracted_quantity=0.0,
+        )
+        new_line = FakeWritable(
+            original_uom_qty=0.0,
+            contracted_quantity=0.0,
+            price_unit=50.0,
+        )
+        old_order = FakeWritable(
+            analytic_account_id=False,
+            use_sale_order_plan=False,
+            order_product_ids=[],
+            order_service_ids=[],
+            sale_order_plan_ids=[],
+            line_ids=[old_line],
+        )
+        new_order = FakeWritable(
+            analytic_account_id=False,
+            use_sale_order_plan=False,
+            order_product_ids=[],
+            order_service_ids=[],
+            sale_order_plan_ids=[],
+            line_ids=[new_line],
+        )
+        wizard = SimpleNamespace(adjustment_percentage=0.0)
+
+        revision_wizard.SaleBlanketOrderRevisionWizard._update_blanket_order_lines(
+            wizard, old_order, new_order
+        )
+
+        self.assertAlmostEqual(new_line.price_unit, 50.0)
+        self.assertEqual(new_line.original_uom_qty, 5.0)
+        self.assertEqual(old_line.original_uom_qty, 2.0)
+
+    def test_copy_blanket_order(self):
+        copied_order = SimpleNamespace(id=99, name="BO-001 (Rev 1)")
+        captured = {}
+
+        def fake_copy(default_data):
+            captured.update(default_data)
+            return copied_order
+
+        old_order = SimpleNamespace(
+            default_get=lambda fields: {"key": "value"},
+            copy=fake_copy,
+        )
+        wizard = SimpleNamespace(
+            old_blanket_order_id=old_order,
+            _get_next_revision_name=lambda: "BO-001 (Rev 1)",
+        )
+        result = revision_wizard.SaleBlanketOrderRevisionWizard._copy_blanket_order(
+            wizard
+        )
+        self.assertEqual(result.id, 99)
+        self.assertEqual(captured["name"], "BO-001 (Rev 1)")
+
+    def test_default_get_with_context(self):
+        defaults = (
+            self.env["sale.blanket.order.revision.wizard"]
+            .with_context(default_blanket_order_id=self.blanket_order.id)
+            .default_get(["old_blanket_order_id"])
+        )
+        self.assertEqual(defaults.get("old_blanket_order_id"), self.blanket_order.id)
+
+    def test_default_get_without_context(self):
+        defaults = self.env["sale.blanket.order.revision.wizard"].default_get(
+            ["old_blanket_order_id"]
+        )
+        self.assertNotIn("old_blanket_order_id", defaults)
+
+    def test_create_revision(self):
+        wizard = self.env["sale.blanket.order.revision.wizard"].create(
+            {"old_blanket_order_id": self.blanket_order.id}
+        )
+        result = wizard.create_revision()
+
+        self.assertEqual(result["type"], "ir.actions.act_window")
+        self.assertEqual(result["res_model"], "sale.blanket.order")
+        self.assertTrue(wizard.new_blanket_order_id)
+        self.assertEqual(result["res_id"], wizard.new_blanket_order_id.id)
+        self.assertIn(wizard, self.blanket_order.revision_wizard_ids)
+
+    def test_create_revision_with_price_adjustment(self):
+        wizard = self.env["sale.blanket.order.revision.wizard"].create(
+            {
+                "old_blanket_order_id": self.blanket_order.id,
+                "adjustment_percentage": 20.0,
+            }
+        )
+        wizard.create_revision()
+
+        new_line = wizard.new_blanket_order_id.line_ids[0]
+        self.assertAlmostEqual(new_line.price_unit, 120.0)
+
+    def test_set_to_draft_allowed_without_revisions(self):
+        self.blanket_order.action_confirm()
+        self.blanket_order.set_to_draft()
+        self.assertEqual(self.blanket_order.state, "draft")
