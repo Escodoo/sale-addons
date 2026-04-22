@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_blanket_order_revision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-25 18:18+0000\n"
+"PO-Revision-Date: 2025-02-25 15:25-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__adjustment_percentage
+msgid "Adjustment Percentage"
+msgstr "Porcentagem de ajuste"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order__all_quotations_invoiced
+msgid "All Quotations Invoiced"
+msgstr "Todas as cotações faturadas"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model,name:sale_blanket_order_revision.model_sale_blanket_order
+msgid "Blanket Order"
+msgstr "Pedido Guarda-Chuva"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model,name:sale_blanket_order_revision.model_sale_blanket_order_line
+msgid "Blanket Order Line"
+msgstr "Linhas do Pedido Guarda-Chuva "
+
+#. module: sale_blanket_order_revision
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_revision.view_sale_blanket_order_revision_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_line__contracted_quantity
+msgid "Contracted Quantity"
+msgstr "Quantidade Contratada"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,help:sale_blanket_order_revision.field_sale_blanket_order__revision_count
+msgid "Count of revisions associated with this blanket order."
+msgstr "Contagem de revisões associadas a este pedido programado."
+
+#. module: sale_blanket_order_revision
+#: model:ir.actions.act_window,name:sale_blanket_order_revision.action_create_revision_wizard
+msgid "Create Blanket Order Revision"
+msgstr "Criar revisão do Pedido Guarda-Chuva"
+
+#. module: sale_blanket_order_revision
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_revision.view_sale_blanket_order_revision_form
+msgid "Create New Revision"
+msgstr "Criar nova revisão"
+
+#. module: sale_blanket_order_revision
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_revision.view_blanket_order_form
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_revision.view_sale_blanket_order_revision_form
+msgid "Create Revision"
+msgstr "Criar Revisão"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_line__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__display_name
+msgid "Display Name"
+msgstr "Nome de exibição"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order__id
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_line__id
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_line____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificação em"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: sale_blanket_order_revision
+#: code:addons/sale_blanket_order_revision/wizard/sale_blanket_order_revision.py:0
+#, python-format
+msgid "New revision created: %s"
+msgstr "Nova revisão criada: %s"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__old_blanket_order_id
+msgid "Original Blanket Order"
+msgstr "Pedido Guarda-Chuva Origem"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,help:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__adjustment_percentage
+msgid "Percentage to adjust the unit price for each line in the blanket order."
+msgstr "Porcentagem para ajustar o preço unitário de cada linha do pedido programado."
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,help:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__new_blanket_order_id
+msgid "Reference to the newly created blanket order revision."
+msgstr "Referência à revisão do pedido programado recém-criada."
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,help:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__old_blanket_order_id
+msgid "Reference to the original blanket order before revision."
+msgstr "Referência ao pedido programado original antes da revisão."
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,help:sale_blanket_order_revision.field_sale_blanket_order__revision_wizard_ids
+msgid "References to the revision wizards associated with this blanket order."
+msgstr "Referências aos assistentes de revisão associados a este Pedido Guarda-Chuva programado."
+
+#. module: sale_blanket_order_revision
+#: code:addons/sale_blanket_order_revision/wizard/sale_blanket_order_revision.py:0
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order_revision_wizard__new_blanket_order_id
+#, python-format
+msgid "Revised Blanket Order"
+msgstr "Pedido Guarda-Chuva revisado"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order__revision_count
+msgid "Revision Count"
+msgstr "Contagem de revisões"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,field_description:sale_blanket_order_revision.field_sale_blanket_order__revision_wizard_ids
+msgid "Revision Wizards"
+msgstr "Assistentes de revisão"
+
+#. module: sale_blanket_order_revision
+#: code:addons/sale_blanket_order_revision/models/sale_blanket_order.py:0
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_revision.view_blanket_order_form
+#, python-format
+msgid "Revisions"
+msgstr "Revisões"
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,help:sale_blanket_order_revision.field_sale_blanket_order_line__contracted_quantity
+msgid "Total quantity contracted based on the associated order lines."
+msgstr "Quantidade total contratada com base nas linhas de pedido associadas."
+
+#. module: sale_blanket_order_revision
+#: model:ir.model.fields,help:sale_blanket_order_revision.field_sale_blanket_order__all_quotations_invoiced
+msgid "True if all related quotations are invoiced."
+msgstr "Verdadeiro se todas as cotações relacionadas forem faturadas."
+
+#. module: sale_blanket_order_revision
+#: model:ir.model,name:sale_blanket_order_revision.model_sale_blanket_order_revision_wizard
+msgid "Wizard for Sale Blanket Order Revision"
+msgstr "Assistente para Revisão de Pedidos Guarda-Chuva"
+
+#. module: sale_blanket_order_revision
+#: code:addons/sale_blanket_order_revision/models/sale_blanket_order.py:0
+#, python-format
+msgid "You cannot set this Blanket Order to Draft "
+msgstr "Você não pode definir esse Pedido Guarda-Chuva como rascunho"
+
+#. module: sale_blanket_order_revision
+#: code:addons/sale_blanket_order_revision/wizard/sale_blanket_order_revision.py:0
+#, python-format
+msgid "{} (Rev {})"
+msgstr "{} (Rev {})"

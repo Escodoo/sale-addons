@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Copyright 2025 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="view_sale_blanket_order_revision_form" model="ir.ui.view">
+        <field name="name">sale.blanket.order.revision.form</field>
+        <field name="model">sale.blanket.order.revision.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create New Revision">
+                <sheet>
+                    <group>
+                        <field name="old_blanket_order_id" invisible="1" />
+                        <field name="new_blanket_order_id" invisible="1" />
+                        <field name="adjustment_percentage" />
+                    </group>
+                    <footer>
+                        <button
+                            string="Create Revision"
+                            type="object"
+                            name="create_revision"
+                            class="btn-primary"
+                        />
+                        <button
+                            string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_revision_wizard" model="ir.actions.act_window">
+        <field name="name">Create Blanket Order Revision</field>
+        <field name="res_model">sale.blanket.order.revision.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_blanket_order_id': active_id}</field>
+    </record>
+</odoo>
