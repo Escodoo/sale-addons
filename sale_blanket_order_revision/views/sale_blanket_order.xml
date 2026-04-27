@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Copyright 2025 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="view_blanket_order_form" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+
+            <!-- Hidden Fields for Tracking Revisions -->
+            <xpath expr="//field[@name='validity_date']" position="after">
+                <field name="revision_wizard_ids" invisible="1" />
+                <field name="revision_count" invisible="1" />
+                <field name="all_quotations_invoiced" invisible="1" />
+            </xpath>
+
+            <xpath expr="//field[@name='original_uom_qty']" position="after">
+                <field name="contracted_quantity" />
+            </xpath>
+
+            <!-- Smart Button: Show Only When revision_count > 0 -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_revisions"
+                    icon="fa-history"
+                    string="Revisions"
+                    attrs="{'invisible': [('revision_count', '=', 0)]}"
+                >
+                    <field name="revision_count" />
+                </button>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button
+                    string="Create Revision"
+                    type="action"
+                    name="%(action_create_revision_wizard)d"
+                    class="oe_stat_button"
+                    attrs="{'invisible': ['|', ('revision_count', '!=', 0), ('all_quotations_invoiced', '=', False)]}"
+                />
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
