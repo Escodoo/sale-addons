@@ -4,3 +4,5 @@ odoo-addon-mis_builder_cash_flow_forecast_integration @ git+https://github.com/E
 odoo-addon-sale_blanket_order_custom @ git+https://github.com/Escodoo/sale-addons.git@16.0#subdirectory=setup/sale_blanket_order_custom
 # purchase_request_custom dependency
 odoo-addon-purchase_request_custom @ git+https://github.com/Escodoo/purchase-addons.git@16.0#subdirectory=setup/purchase_request_custom
+# truncation_base dependency
+odoo-addon-truncation_base @ git+https://github.com/OCA/account-financial-tools.git@refs/pull/2351/head#subdirectory=setup/truncation_base
