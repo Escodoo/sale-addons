@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_blanket_order_revision_price_alert
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_blanket_order_revision_price_alert
+#. odoo-python
+#: code:addons/sale_blanket_order_revision_price_alert/models/sale_blanket_order.py:0
+#, python-format
+msgid "%(product)s: %(old).2f → %(new).2f"
+msgstr "%(product)s: %(old).2f → %(new).2f"
+
+#. module: sale_blanket_order_revision_price_alert
+#: model:ir.model.fields,field_description:sale_blanket_order_revision_price_alert.field_sale_blanket_order__price_reduction_warning
+msgid "Price Reduction Warning"
+msgstr "Aviso de Redução de Preço"
+
+#. module: sale_blanket_order_revision_price_alert
+#: model:ir.model.fields,help:sale_blanket_order_revision_price_alert.field_sale_blanket_order__price_reduction_warning
+msgid ""
+"Lines whose price is lower than the matching product's price in the "
+"previous version, without formal approval."
+msgstr ""
+"Linhas cujo preço é menor que o preço do produto correspondente na versão "
+"anterior, sem aprovação formal."
+
+#. module: sale_blanket_order_revision_price_alert
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_revision_price_alert.view_blanket_order_form_price_alert
+msgid "Price reduction detected in this revision, without formal approval:"
+msgstr "Redução de preço detectada nesta revisão, sem aprovação formal:"

@@ -89,11 +89,20 @@ class SaleBlanketOrderRevisionWizard(models.TransientModel):
             new_blanket_order.line_ids,
             strict=True,
         ):
+            initial_original_uom_qty = (
+                old_line.initial_original_uom_qty or old_line.original_uom_qty
+            )
+            accumulated_contracted_quantity = (
+                old_line.accumulated_contracted_quantity + old_line.original_uom_qty
+            )
+
             # Update quantities in the new line
             new_line.write(
                 {
                     "original_uom_qty": old_line.remaining_uom_qty,
                     "contracted_quantity": old_line.original_uom_qty,
+                    "initial_original_uom_qty": initial_original_uom_qty,
+                    "accumulated_contracted_quantity": accumulated_contracted_quantity,
                 }
             )
 
@@ -106,6 +115,8 @@ class SaleBlanketOrderRevisionWizard(models.TransientModel):
                 {
                     "contracted_quantity": old_line.original_uom_qty,
                     "original_uom_qty": old_line.invoiced_uom_qty,
+                    "initial_original_uom_qty": initial_original_uom_qty,
+                    "accumulated_contracted_quantity": accumulated_contracted_quantity,
                 }
             )
 
@@ -121,6 +132,7 @@ class SaleBlanketOrderRevisionWizard(models.TransientModel):
         for rec in self:
             new_blanket_order = rec._copy_blanket_order()
             rec.new_blanket_order_id = new_blanket_order.id
+            new_blanket_order.previous_blanket_order_id = rec.old_blanket_order_id.id
 
             # Link revision wizard to original blanket order
             rec.old_blanket_order_id.write({"revision_wizard_ids": [(4, rec.id)]})
