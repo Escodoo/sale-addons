@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Copyright 2026 - TODAY, Escodoo
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="view_blanket_order_form_price_alert" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.price.alert</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='button_box']" position="after">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': [('price_reduction_warning', '=', False)]}"
+                >
+                    <strong
+                    >Price reduction detected in this revision, without formal approval:</strong>
+                    <field name="price_reduction_warning" nolabel="1" readonly="1" />
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
