@@ -17,7 +17,12 @@ Escodoo add-ons used to extend or customize Odoo Sale app functions.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[sale_blanket_order_custom](sale_blanket_order_custom/) | 16.0.1.0.0 |  | Sale Blanket Order Custom
+[sale_blanket_order_revision](sale_blanket_order_revision/) | 16.0.1.0.0 |  | Sale Blanket Order Revision
 
 [//]: # (end addons)
 
