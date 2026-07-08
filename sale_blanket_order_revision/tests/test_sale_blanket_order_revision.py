@@ -7,6 +7,7 @@ from types import SimpleNamespace
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.sale_blanket_order_revision.hooks import post_init_hook
 from odoo.addons.sale_blanket_order_revision.models.sale_blanket_order import (
     SaleBlanketOrder,
 )
@@ -78,7 +79,10 @@ class TestSaleBlanketOrderRevision(TransactionCase):
             {"name": "Test Product", "type": "consu"}
         )
         self.pricelist = self.env["product.pricelist"].search([], limit=1)
-        self.blanket_order = self.env["sale.blanket.order"].create(
+        self.blanket_order = self._create_blanket_order()
+
+    def _create_blanket_order(self, qty=10.0, price=100.0):
+        return self.env["sale.blanket.order"].create(
             {
                 "partner_id": self.partner.id,
                 "pricelist_id": self.pricelist.id,
@@ -90,13 +94,20 @@ class TestSaleBlanketOrderRevision(TransactionCase):
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
-                            "original_uom_qty": 10.0,
-                            "price_unit": 100.0,
+                            "original_uom_qty": qty,
+                            "price_unit": price,
                         },
                     )
                 ],
             }
         )
+
+    def _create_revision(self, old_blanket_order):
+        wizard = self.env["sale.blanket.order.revision.wizard"].create(
+            {"old_blanket_order_id": old_blanket_order.id}
+        )
+        wizard.create_revision()
+        return wizard.new_blanket_order_id
 
     def test_compute_all_quotations_invoiced(self):
         all_invoiced = SimpleNamespace(
@@ -126,34 +137,78 @@ class TestSaleBlanketOrderRevision(TransactionCase):
         self.assertFalse(not_all_invoiced.all_quotations_invoiced)
         self.assertFalse(no_quotation.all_quotations_invoiced)
 
-    def test_compute_revision_count(self):
-        record = SimpleNamespace(revision_wizard_ids=[1, 2, 3], revision_count=0)
+    def test_action_view_revisions_visible_from_every_version_in_the_chain(self):
+        rev1 = self._create_revision(self.blanket_order)
+        rev2 = self._create_revision(rev1)
 
-        SaleBlanketOrder._compute_revision_count([record])
+        action_from_root = self.blanket_order.action_view_revisions()
+        self.assertEqual(action_from_root["res_model"], "sale.blanket.order")
+        self.assertEqual(set(action_from_root["domain"][0][2]), {rev1.id, rev2.id})
 
-        self.assertEqual(record.revision_count, 3)
-
-    def test_action_view_revisions(self):
-        order_with_revisions = SimpleNamespace(
-            revision_wizard_ids=FakeRevisionLinks([11, 12]),
-            ensure_one=lambda: True,
+        action_from_middle = rev1.action_view_revisions()
+        self.assertEqual(
+            set(action_from_middle["domain"][0][2]),
+            {self.blanket_order.id, rev2.id},
         )
 
-        action = SaleBlanketOrder.action_view_revisions(order_with_revisions)
-        self.assertEqual(action["res_model"], "sale.blanket.order")
-        self.assertEqual(action["domain"], [("id", "in", [11, 12])])
-
-        order_without_revisions = SimpleNamespace(
-            revision_wizard_ids=FakeRevisionLinks([]),
-            ensure_one=lambda: True,
+        action_from_last = rev2.action_view_revisions()
+        self.assertEqual(
+            set(action_from_last["domain"][0][2]),
+            {self.blanket_order.id, rev1.id},
         )
-        close_action = SaleBlanketOrder.action_view_revisions(order_without_revisions)
+
+    def test_action_view_revisions_close_when_no_history(self):
+        close_action = self.blanket_order.action_view_revisions()
         self.assertEqual(close_action["type"], "ir.actions.act_window_close")
 
+    def test_has_revision_history(self):
+        self.assertFalse(self.blanket_order.has_revision_history)
+
+        rev1 = self._create_revision(self.blanket_order)
+
+        self.assertTrue(self.blanket_order.has_revision_history)
+        self.assertTrue(rev1.has_revision_history)
+
+    def test_initial_and_accumulated_quantity_across_revisions(self):
+        rev1 = self._create_revision(self.blanket_order)
+        rev2 = self._create_revision(rev1)
+
+        root_line = self.blanket_order.line_ids[0]
+        rev1_line = rev1.line_ids[0]
+        rev2_line = rev2.line_ids[0]
+
+        self.assertEqual(root_line.initial_original_uom_qty, 10.0)
+        self.assertEqual(rev1_line.initial_original_uom_qty, 10.0)
+        self.assertEqual(rev2_line.initial_original_uom_qty, 10.0)
+
+        self.assertEqual(root_line.accumulated_contracted_quantity, 10.0)
+        self.assertEqual(rev1_line.accumulated_contracted_quantity, 20.0)
+        self.assertEqual(rev2_line.accumulated_contracted_quantity, 20.0)
+
+    def test_has_next_revision_only_reflects_forward_history(self):
+        rev1 = self._create_revision(self.blanket_order)
+
+        self.assertTrue(self.blanket_order.has_next_revision)
+        self.assertFalse(rev1.has_next_revision)
+
+        rev2 = self._create_revision(rev1)
+        self.assertTrue(rev1.has_next_revision)
+        self.assertFalse(rev2.has_next_revision)
+
     def test_set_to_draft_blocked_when_has_revisions(self):
-        record = SimpleNamespace(revision_wizard_ids=[1])
+        self._create_revision(self.blanket_order)
         with self.assertRaises(UserError):
-            SaleBlanketOrder.set_to_draft([record])
+            self.blanket_order.set_to_draft()
+
+    def test_post_init_hook_backfills_previous_blanket_order(self):
+        # Simulates upgrading the module while a revision wizard still
+        # exists in the database (i.e. it hasn't been vacuumed yet).
+        new_order = self._create_revision(self.blanket_order)
+        new_order.previous_blanket_order_id = False
+
+        post_init_hook(self.env.cr, self.env.registry)
+
+        self.assertEqual(new_order.previous_blanket_order_id, self.blanket_order)
 
     def test_get_revision_count_recursive_chain(self):
         chain = {}
@@ -185,10 +240,14 @@ class TestSaleBlanketOrderRevision(TransactionCase):
             original_uom_qty=10.0,
             invoiced_uom_qty=4.0,
             contracted_quantity=0.0,
+            initial_original_uom_qty=0.0,
+            accumulated_contracted_quantity=0.0,
         )
         new_line = FakeWritable(
             original_uom_qty=0.0,
             contracted_quantity=0.0,
+            initial_original_uom_qty=0.0,
+            accumulated_contracted_quantity=0.0,
             price_unit=100.0,
         )
         old_order = FakeWritable(
@@ -216,9 +275,13 @@ class TestSaleBlanketOrderRevision(TransactionCase):
         self.assertEqual(new_order.analytic_account_id, 99)
         self.assertEqual(new_line.original_uom_qty, 3.0)
         self.assertEqual(new_line.contracted_quantity, 10.0)
+        self.assertEqual(new_line.initial_original_uom_qty, 10.0)
+        self.assertEqual(new_line.accumulated_contracted_quantity, 10.0)
         self.assertAlmostEqual(new_line.price_unit, 110.0)
         self.assertEqual(old_line.contracted_quantity, 10.0)
         self.assertEqual(old_line.original_uom_qty, 4.0)
+        self.assertEqual(old_line.initial_original_uom_qty, 10.0)
+        self.assertEqual(old_line.accumulated_contracted_quantity, 10.0)
 
     def test_update_blanket_order_lines_without_adjustment(self):
         old_line = FakeWritable(
@@ -226,10 +289,14 @@ class TestSaleBlanketOrderRevision(TransactionCase):
             original_uom_qty=8.0,
             invoiced_uom_qty=2.0,
             contracted_quantity=0.0,
+            initial_original_uom_qty=0.0,
+            accumulated_contracted_quantity=0.0,
         )
         new_line = FakeWritable(
             original_uom_qty=0.0,
             contracted_quantity=0.0,
+            initial_original_uom_qty=0.0,
+            accumulated_contracted_quantity=0.0,
             price_unit=50.0,
         )
         old_order = FakeWritable(
@@ -257,6 +324,10 @@ class TestSaleBlanketOrderRevision(TransactionCase):
         self.assertAlmostEqual(new_line.price_unit, 50.0)
         self.assertEqual(new_line.original_uom_qty, 5.0)
         self.assertEqual(old_line.original_uom_qty, 2.0)
+        self.assertEqual(new_line.initial_original_uom_qty, 8.0)
+        self.assertEqual(old_line.initial_original_uom_qty, 8.0)
+        self.assertEqual(new_line.accumulated_contracted_quantity, 8.0)
+        self.assertEqual(old_line.accumulated_contracted_quantity, 8.0)
 
     def test_copy_blanket_order(self):
         copied_order = SimpleNamespace(id=99, name="BO-001 (Rev 1)")
@@ -305,6 +376,9 @@ class TestSaleBlanketOrderRevision(TransactionCase):
         self.assertTrue(wizard.new_blanket_order_id)
         self.assertEqual(result["res_id"], wizard.new_blanket_order_id.id)
         self.assertIn(wizard, self.blanket_order.revision_wizard_ids)
+        self.assertEqual(
+            wizard.new_blanket_order_id.previous_blanket_order_id, self.blanket_order
+        )
 
     def test_create_revision_with_price_adjustment(self):
         wizard = self.env["sale.blanket.order.revision.wizard"].create(

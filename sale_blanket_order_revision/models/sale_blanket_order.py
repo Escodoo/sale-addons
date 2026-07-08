@@ -14,9 +14,21 @@ class SaleBlanketOrder(models.Model):
         string="Revision Wizards",
         help="References to the revision wizards associated with this blanket order.",
     )
-    revision_count = fields.Integer(
-        compute="_compute_revision_count",
-        help="Count of revisions associated with this blanket order.",
+    previous_blanket_order_id = fields.Many2one(
+        comodel_name="sale.blanket.order",
+        string="Previous Version",
+        readonly=True,
+        copy=False,
+        help="Blanket order this record was revised from. Stored directly "
+        "here (not only on the revision wizard) because the wizard is a "
+        "transient record that Odoo eventually purges, which would "
+        "otherwise break the revision history over time.",
+    )
+    has_revision_history = fields.Boolean(
+        compute="_compute_has_revision_history",
+    )
+    has_next_revision = fields.Boolean(
+        compute="_compute_has_next_revision",
     )
 
     all_quotations_invoiced = fields.Boolean(
@@ -34,18 +46,52 @@ class SaleBlanketOrder(models.Model):
             else:
                 record.all_quotations_invoiced = False
 
-    @api.depends("revision_wizard_ids")
-    def _compute_revision_count(self):
+    def _get_revision_chain_ids(self):
+        self.ensure_one()
+        chain_ids = {self.id}
+
+        current = self
+        while (
+            current.previous_blanket_order_id
+            and current.previous_blanket_order_id.id not in chain_ids
+        ):
+            chain_ids.add(current.previous_blanket_order_id.id)
+            current = current.previous_blanket_order_id
+
+        current_id = self.id
+        while True:
+            next_order = self.search(
+                [("previous_blanket_order_id", "=", current_id)], limit=1
+            )
+            if not next_order or next_order.id in chain_ids:
+                break
+            chain_ids.add(next_order.id)
+            current_id = next_order.id
+
+        return chain_ids
+
+    @api.depends("previous_blanket_order_id", "revision_wizard_ids")
+    def _compute_has_revision_history(self):
         for record in self:
-            record.revision_count = len(record.revision_wizard_ids)
+            record.has_revision_history = len(record._get_revision_chain_ids()) > 1
+
+    def _has_next_revision(self):
+        self.ensure_one()
+        return bool(self.search_count([("previous_blanket_order_id", "=", self.id)]))
+
+    @api.depends("previous_blanket_order_id", "revision_wizard_ids")
+    def _compute_has_next_revision(self):
+        for record in self:
+            record.has_next_revision = record._has_next_revision()
 
     def action_view_revisions(self):
-        """Open a window to view all revisions of the blanket order."""
+        """Open a window to view all other versions of the blanket order,
+        regardless of whether this record is the original or a revision."""
         self.ensure_one()
 
-        revision_ids = self.revision_wizard_ids.mapped("new_blanket_order_id.id")
+        other_ids = self._get_revision_chain_ids() - {self.id}
 
-        if not revision_ids:
+        if not other_ids:
             return {"type": "ir.actions.act_window_close"}
 
         return {
@@ -53,13 +99,13 @@ class SaleBlanketOrder(models.Model):
             "name": _("Revisions"),
             "res_model": "sale.blanket.order",
             "view_mode": "tree,form",
-            "domain": [("id", "in", revision_ids)],
+            "domain": [("id", "in", list(other_ids))],
         }
 
     def set_to_draft(self):
-        """Restrict setting the order to draft if there are associated revisions."""
+        """Restrict setting the order to draft if a later revision exists."""
         for record in self:
-            if record.revision_wizard_ids:
+            if record._has_next_revision():
                 raise UserError(
                     _(
                         "You cannot set this Blanket Order to Draft because "

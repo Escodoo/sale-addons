@@ -11,15 +11,18 @@
             <!-- Hidden Fields for Tracking Revisions -->
             <xpath expr="//field[@name='validity_date']" position="after">
                 <field name="revision_wizard_ids" invisible="1" />
-                <field name="revision_count" invisible="1" />
+                <field name="has_revision_history" invisible="1" />
+                <field name="has_next_revision" invisible="1" />
                 <field name="all_quotations_invoiced" invisible="1" />
             </xpath>
 
             <xpath expr="//field[@name='original_uom_qty']" position="after">
-                <field name="contracted_quantity" />
+                <field name="initial_original_uom_qty" optional="hide" />
+                <field name="contracted_quantity" optional="hide" />
+                <field name="accumulated_contracted_quantity" optional="hide" />
             </xpath>
 
-            <!-- Smart Button: Show Only When revision_count > 0 -->
+            <!-- Smart Button: Show on every version that has revision history -->
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     class="oe_stat_button"
@@ -27,10 +30,8 @@
                     name="action_view_revisions"
                     icon="fa-history"
                     string="Revisions"
-                    attrs="{'invisible': [('revision_count', '=', 0)]}"
-                >
-                    <field name="revision_count" />
-                </button>
+                    attrs="{'invisible': [('has_revision_history', '=', False)]}"
+                />
             </xpath>
 
             <xpath expr="//header" position="inside">
@@ -39,7 +40,7 @@
                     type="action"
                     name="%(action_create_revision_wizard)d"
                     class="oe_stat_button"
-                    attrs="{'invisible': ['|', ('revision_count', '!=', 0), ('all_quotations_invoiced', '=', False)]}"
+                    attrs="{'invisible': ['|', ('has_next_revision', '=', True), ('all_quotations_invoiced', '=', False)]}"
                 />
             </xpath>
 
