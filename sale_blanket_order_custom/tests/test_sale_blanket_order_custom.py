@@ -22,6 +22,56 @@ class TestSaleBlanketOrderCustom(SaleBlanketOrderCommon, TransactionCase):
         cls.pricelist = cls.pricelist
         cls.blanket = cls.blanket
 
+    def test_remaining_qty_precision_survives_uom_rounding(self):
+        """remaining_qty must not be truncated by an extra, independent
+        rounding step against the product's reference UoM `rounding`
+        (0.01 by default) on top of whatever precision the blanket
+        line's own UoM already uses - mirroring the real case of a
+        fine-grained measurement unit (e.g. "GB", "Mes") on the line
+        versus a coarser generic reference UoM on the product.
+
+        remaining_qty must always equal remaining_uom_qty exactly:
+        both go through the same "Product Unit of Measure" decimal
+        precision (whatever it is configured to in this database), so
+        any mismatch can only come from the extra UoM-rounding bug.
+        The reference UoM's rounding is deliberately set to a coarse,
+        unusual value (0.5) so the two fields are guaranteed to
+        disagree before the fix (1.00 - 0.633 = 0.367, which the old
+        code would round to the nearest 0.5 = 0.5, clearly different).
+        """
+        reference_uom = self.product.uom_id
+        reference_uom.rounding = 0.5
+        fine_uom = self.env["uom.uom"].create(
+            {
+                "name": "Fine Test Unit",
+                "category_id": reference_uom.category_id.id,
+                "uom_type": "smaller",
+                "factor": reference_uom.factor,
+                "rounding": 0.000001,
+            }
+        )
+        line = self.env["sale.blanket.order.line"].create(
+            {
+                "order_id": self.blanket.id,
+                "product_id": self.product.id,
+                "product_uom": fine_uom.id,
+                "original_uom_qty": 1.0,
+                "price_unit": self.product.lst_price,
+            }
+        )
+        sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
+        self.env["sale.order.line"].create(
+            {
+                "order_id": sale_order.id,
+                "blanket_order_line": line.id,
+                "product_id": self.product.id,
+                "product_uom": fine_uom.id,
+                "product_uom_qty": 0.633,
+            }
+        )
+        line._compute_quantities()
+        self.assertEqual(line.remaining_qty, line.remaining_uom_qty)
+
     def test_00_full_workflow(self):
         """
         Test the full workflow of the custom sale blanket order,

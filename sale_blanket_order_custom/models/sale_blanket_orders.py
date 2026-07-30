@@ -301,3 +301,20 @@ class BlanketOrderLine(models.Model):
         related="order_id.analytic_account_id",
         string="Analytic Account",
     )
+
+    def _compute_quantities(self):
+        """``remaining_qty`` is force-rounded by the base module to the
+        precision of ``product_id.uom_id.rounding`` (0.01 by default,
+        unrelated to the "Product Unit of Measure" decimal precision
+        that already makes ``remaining_uom_qty`` precise), silently
+        losing the fractional balance needed to sequence progressive
+        measurements (e.g. 1.00 - 0.633 = 0.367 becomes 0.36/0.37).
+        Recompute it without forcing that extra rounding, so it follows
+        the same precision as the rest of the quantity fields.
+        """
+        res = super()._compute_quantities()
+        for line in self:
+            line.remaining_qty = line.product_uom._compute_quantity(
+                line.remaining_uom_qty, line.product_id.uom_id, round=False
+            )
+        return res
