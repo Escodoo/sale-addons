@@ -8,11 +8,13 @@ class SaleBlanketOrderLine(models.Model):
     _inherit = "sale.blanket.order.line"
 
     contracted_quantity = fields.Float(
+        digits="Product Unit of Measure",
         readonly=True,
         help="Total quantity contracted based on the associated order lines.",
     )
     initial_original_uom_qty = fields.Float(
         string="Initial Original Quantity",
+        digits="Product Unit of Measure",
         readonly=True,
         copy=False,
         help="Original quantity as first defined on the blanket order, "
@@ -20,6 +22,7 @@ class SaleBlanketOrderLine(models.Model):
         "never overwritten by later revisions or invoicing.",
     )
     accumulated_contracted_quantity = fields.Float(
+        digits="Product Unit of Measure",
         readonly=True,
         copy=False,
         help="Sum of the contracted quantity of this revision and all "
