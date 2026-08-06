@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_move_retention_wizard_form" model="ir.ui.view">
+        <field name="name">account.move.retention.wizard.form</field>
+        <field name="model">account.move.retention.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Escrow/Retention">
+                <field name="move_id" invisible="1" />
+                <field name="company_id" invisible="1" />
+                <field name="move_escrow_account_id" invisible="1" />
+                <field name="move_escrow_journal_id" invisible="1" />
+                <group>
+                    <group>
+                        <field name="date" />
+                        <field name="amount" />
+                        <field name="date_due" />
+                    </group>
+                    <group>
+                        <field
+                            name="journal_id"
+                            attrs="{'readonly': [('move_escrow_journal_id', '!=', False)]}"
+                        />
+                        <field
+                            name="escrow_account_id"
+                            attrs="{
+                                'readonly': [('move_escrow_account_id', '!=', False)],
+                                'required': [('move_escrow_account_id', '=', False)],
+                            }"
+                        />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" special="cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

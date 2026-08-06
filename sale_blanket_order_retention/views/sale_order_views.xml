@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_retention" model="ir.ui.view">
+        <field name="name">sale.order.form.retention</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='sale_info']/field[@name='analytic_account_id']"
+                position="after"
+            >
+                <field
+                    name="escrow_account_id"
+                    attrs="{'invisible': [('escrow_account_id', '=', False)]}"
+                />
+                <field
+                    name="escrow_journal_id"
+                    attrs="{'invisible': [('escrow_journal_id', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

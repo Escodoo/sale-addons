@@ -1,0 +1,299 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_blanket_order_retention
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-08 12:25+0000\n"
+"PO-Revision-Date: 2026-07-08 12:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__amount
+msgid "Amount"
+msgstr "Valor"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model,name:sale_blanket_order_retention.model_sale_blanket_order
+msgid "Blanket Order"
+msgstr "Pedido em Aberto"
+
+#. module: sale_blanket_order_retention
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_retention.view_account_move_retention_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_blanket_order_retention
+#. odoo-python
+#: code:addons/sale_blanket_order_retention/wizard/account_move_retention_wizard.py:0
+#, python-format
+msgid ""
+"Cannot create the retention because the invoice has an open balance on more "
+"than one receivable account."
+msgstr ""
+"Não é possível criar a retenção porque a fatura possui saldo em aberto em "
+"mais de uma conta a receber."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: sale_blanket_order_retention
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_retention.view_account_move_retention_wizard_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__date
+msgid "Date"
+msgstr "Data"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__display_name
+msgid "Display Name"
+msgstr "Nome de Exibição"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__date_due
+msgid "Due Date"
+msgstr "Data de Vencimento"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_bank_statement_line__escrow_account_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move__escrow_account_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__escrow_account_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_payment__escrow_account_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_sale_blanket_order__escrow_account_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_sale_order__escrow_account_id
+msgid "Escrow Account"
+msgstr "Conta Caução"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_sale_order__escrow_account_id
+msgid "Escrow Account inherited from the source blanket order."
+msgstr "Conta Caução herdada do contrato guarda-chuva de origem."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_bank_statement_line__escrow_account_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_move__escrow_account_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_move_retention_wizard__move_escrow_account_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_payment__escrow_account_id
+msgid "Escrow Account inherited from the source sale order / blanket order."
+msgstr ""
+"Conta Caução herdada do pedido de venda / contrato guarda-chuva de origem."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_bank_statement_line__escrow_journal_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move__escrow_journal_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__journal_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_payment__escrow_journal_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_sale_blanket_order__escrow_journal_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_sale_order__escrow_journal_id
+msgid "Escrow Journal"
+msgstr "Diário Caução"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_sale_order__escrow_journal_id
+msgid "Escrow Journal inherited from the source blanket order."
+msgstr "Diário Caução herdado do contrato guarda-chuva de origem."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_bank_statement_line__escrow_journal_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_move__escrow_journal_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_move_retention_wizard__move_escrow_journal_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_payment__escrow_journal_id
+msgid "Escrow Journal inherited from the source sale order / blanket order."
+msgstr ""
+"Diário Caução herdado do pedido de venda / contrato guarda-chuva de origem."
+
+#. module: sale_blanket_order_retention
+#. odoo-python
+#: code:addons/sale_blanket_order_retention/models/account_move.py:0
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_retention.view_account_move_retention_wizard_form
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_retention.view_move_form_retention
+#, python-format
+msgid "Escrow/Retention"
+msgstr "Caução/Retenção"
+
+#. module: sale_blanket_order_retention
+#. odoo-python
+#: code:addons/sale_blanket_order_retention/wizard/account_move_retention_wizard.py:0
+#, python-format
+msgid "Escrow/Retention - %s"
+msgstr "Caução/Retenção - %s"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__move_id
+msgid "Invoice"
+msgstr "Fatura"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__move_escrow_account_id
+msgid "Invoice Escrow Account"
+msgstr "Conta Caução da Fatura"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__move_escrow_journal_id
+msgid "Invoice Escrow Journal"
+msgstr "Diário Caução da Fatura"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model,name:sale_blanket_order_retention.model_account_move_retention_wizard
+msgid "Invoice Escrow/Retention"
+msgstr "Caução/Retenção de Fatura"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model,name:sale_blanket_order_retention.model_account_move
+msgid "Journal Entry"
+msgstr "Lançamento de Diário"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_sale_blanket_order__escrow_journal_id
+msgid ""
+"Miscellaneous journal used to post the retention/escrow entries of the "
+"invoices generated from this blanket order."
+msgstr ""
+"Diário do tipo Diversos utilizado para lançar os lançamentos de retenção/"
+"caução das faturas geradas a partir deste contrato guarda-chuva."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields.selection,name:sale_blanket_order_retention.selection__account_move__payment_state__payment_retained
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_retention.view_move_form_retention
+msgid "Payment Retained"
+msgstr "Pagamento Retido"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_bank_statement_line__payment_state
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move__payment_state
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_payment__payment_state
+msgid "Payment Status"
+msgstr "Status de Pagamento"
+
+#. module: sale_blanket_order_retention
+#. odoo-python
+#: code:addons/sale_blanket_order_retention/wizard/account_move_retention_wizard.py:0
+#, python-format
+msgid "Please set the Escrow Account."
+msgstr "Informe a Conta Caução."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_sale_blanket_order__escrow_account_id
+msgid ""
+"Receivable account used to post the retained/escrow amounts of the invoices "
+"generated from this blanket order."
+msgstr ""
+"Conta a receber utilizada para lançar os valores retidos (caução) das "
+"faturas geradas a partir deste contrato guarda-chuva."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_bank_statement_line__retention_move_ids
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move__retention_move_ids
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_payment__retention_move_ids
+msgid "Retention Entries"
+msgstr "Lançamentos de Retenção"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_bank_statement_line__retention_move_count
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move__retention_move_count
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_payment__retention_move_count
+msgid "Retention Move Count"
+msgstr "Quantidade de Lançamentos de Retenção"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model,name:sale_blanket_order_retention.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de Vendas"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_bank_statement_line__retention_invoice_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_move__retention_invoice_id
+#: model:ir.model.fields,help:sale_blanket_order_retention.field_account_payment__retention_invoice_id
+msgid ""
+"Set only on retention/escrow entries, pointing back to the invoice that "
+"originated the entry."
+msgstr ""
+"Preenchido apenas nos lançamentos de retenção/caução, apontando para a "
+"fatura que originou o lançamento."
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move__smart_search
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move_retention_wizard__smart_search
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_sale_blanket_order__smart_search
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_sale_order__smart_search
+msgid "Smart Search"
+msgstr "Busca Inteligente"
+
+#. module: sale_blanket_order_retention
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_bank_statement_line__retention_invoice_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_move__retention_invoice_id
+#: model:ir.model.fields,field_description:sale_blanket_order_retention.field_account_payment__retention_invoice_id
+msgid "Source Invoice (Retention)"
+msgstr "Fatura de Origem (Retenção)"
+
+#. module: sale_blanket_order_retention
+#. odoo-python
+#: code:addons/sale_blanket_order_retention/wizard/account_move_retention_wizard.py:0
+#, python-format
+msgid ""
+"The retention amount (%(amount)s) cannot be greater than the invoice's open "
+"balance (%(residual)s)."
+msgstr ""
+"O valor da retenção (%(amount)s) não pode ser maior que o saldo em aberto "
+"da fatura (%(residual)s)."
+
+#. module: sale_blanket_order_retention
+#. odoo-python
+#: code:addons/sale_blanket_order_retention/wizard/account_move_retention_wizard.py:0
+#, python-format
+msgid "The retention amount must be greater than zero."
+msgstr "O valor da retenção deve ser maior que zero."
+
+#. module: sale_blanket_order_retention
+#. odoo-python
+#: code:addons/sale_blanket_order_retention/wizard/account_move_retention_wizard.py:0
+#, python-format
+msgid "This invoice has no open balance to retain."
+msgstr "Esta fatura não possui saldo em aberto para reter."
