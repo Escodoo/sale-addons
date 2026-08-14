@@ -4,11 +4,11 @@
 {
     "name": "Sale Blanket Order Revision",
     "category": "Sale",
-    "version": "16.0.1.0.2",
+    "version": "16.0.1.0.3",
     "license": "AGPL-3",
     "author": "Escodoo",
     "website": "https://github.com/Escodoo/sale-addons",
-    "depends": ["purchase_request_custom"],
+    "depends": ["sale_blanket_order_custom", "base_revision"],
     "data": [
         "wizard/sale_blanket_order_revision.xml",
         "views/sale_blanket_order.xml",
