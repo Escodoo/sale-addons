@@ -69,3 +69,45 @@ class TestSaleCrmAnalyticDistribution(BaseCommon):
             sale_order.order_line.analytic_distribution,
             {str(self.analytic_account.id): 100},
         )
+
+    def test_order_line_default_get_ignores_leaked_context(self):
+        """default_analytic_distribution must not leak into order lines.
+
+        Odoo applies a `default_<field>` context key to every model that
+        has a field with that name, not only the one it was meant for.
+        Since both `sale.order` and `sale.order.line` have an
+        `analytic_distribution` field, this context key would otherwise
+        make new order lines carry the opportunity's analytic account as
+        their own value, which the analytic distribution widget cannot
+        resolve and crashes on (the line disappears from the UI).
+        """
+        defaults = (
+            self.env["sale.order.line"]
+            .with_context(
+                default_analytic_distribution={str(self.analytic_account.id): 100}
+            )
+            .default_get(["analytic_distribution"])
+        )
+        self.assertNotIn("analytic_distribution", defaults)
+
+    def test_adding_line_to_existing_order_inherits_opportunity_account(self):
+        """Adding a line to an order linked to the opportunity inherits its
+        analytic account directly, even if the header field was reset
+        (e.g. because another line was temporarily empty)."""
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "opportunity_id": self.lead.id,
+            }
+        )
+        sale_order.write(
+            {
+                "order_line": [
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 1})
+                ]
+            }
+        )
+        self.assertEqual(
+            sale_order.order_line.analytic_distribution,
+            {str(self.analytic_account.id): 100},
+        )
