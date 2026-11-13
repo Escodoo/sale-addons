@@ -5,75 +5,37 @@
         inherit_id="l10n_br_sale.report_saleorder_document_l10n_br_sale"
         priority="100"
     >
-        <!-- HIDDEN AMOUNT UNTAXED LABEL -->
+        <!-- Hide the taxes column (header) -->
+        <xpath expr="//th[@name='th_taxes']" position="replace" />
+        <!-- Hide the taxes column (cells). l10n_br_sale defines two
+             td_taxes (Brazilian company / other countries); xpath only
+             matches the first occurrence, so remove each one in turn. -->
+        <xpath expr="//td[@name='td_taxes']" position="replace" />
+        <xpath expr="//td[@name='td_taxes']" position="replace" />
+        <!-- Always show the line amount including taxes -->
         <xpath
-            expr="//div[@name='total']/div/table/tr[@style='']/td[@name='td_amount_untaxed_label']"
-            position="attributes"
+            expr="//td[@name='td_subtotal']/span[@t-if=&quot;doc.company_price_include == 'tax_included'&quot;]"
+            position="replace"
         >
-            <attribute name="class">d-none</attribute>
+            <span t-field="line.price_total" />
         </xpath>
-        <!-- HIDDEN AMOUNT UNTAXED -->
+        <xpath expr="//td[@name='td_subtotal']/span[@t-else]" position="replace" />
+        <!-- Show only the total, hiding untaxed amount and tax groups -->
         <xpath
-            expr="//div[@name='total']/div/table/tr[@style='']/td[@name='td_amount_untaxed']"
-            position="attributes"
+            expr="//div[@name='total']//t[@t-call='sale.document_tax_totals']"
+            position="replace"
         >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- HIDDEN AMOUNT TAX LABEL -->
-        <xpath
-            expr="//div[@name='total']/div/table/tr[@style='']/td[@name='td_amount_tax_label']"
-            position="attributes"
-        >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- HIDDEN AMOUNT TAX -->
-        <xpath
-            expr="//div[@name='total']/div/table/tr[@style='']/td[@name='td_amount_tax']"
-            position="attributes"
-        >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- HIDDEN AMOUNT BY GROUP (IPI, COFFINS, ETC) -->
-        <xpath
-            expr="//div[@name='total']/div/table//td[@name='td_amount_by_group_label']"
-            position="attributes"
-        >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- HIDDEN AMOUNT BY GROUP (IPI, COFFINS, ETC) -->
-        <xpath
-            expr="//div[@name='total']/div/table//td[@name='td_amount_by_group']"
-            position="attributes"
-        >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- HIDDE COLUMN TH_TAXES -->
-        <xpath
-            expr="//table[hasclass('table', 'table-sm', 'o_main_table')]/thead//th[@name='th_taxes']"
-            position="attributes"
-        >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- HIDDE COLUMN TD_TAXES -->
-        <xpath
-            expr="//table[hasclass('table', 'table-sm','o_main_table')]/tbody//td[@name='td_taxes']"
-            position="attributes"
-        >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- HIDDEN SPAN LINE.PRICE_SUBTOTAL (NO INCLUDE TAXES) -->
-        <xpath
-            expr="//table[hasclass('table', 'table-sm', 'o_main_table')]/tbody//span[@t-field='line.price_subtotal']"
-            position="attributes"
-        >
-            <attribute name="class">d-none</attribute>
-        </xpath>
-        <!-- REMOVE GROUPS IN LINE.PRICE_TOTAL (INCLUDE TAXES) -->
-        <xpath
-            expr="//table[hasclass('table', 'table-sm', 'o_main_table')]/tbody//span[@t-field='line.price_total']"
-            position="attributes"
-        >
-            <attribute name="groups" />
+            <tr class="o_total">
+                <td>
+                    <strong>Total</strong>
+                </td>
+                <td class="text-end">
+                    <strong
+                        t-out="doc.tax_totals['total_amount_currency']"
+                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                    />
+                </td>
+            </tr>
         </xpath>
     </template>
 </odoo>

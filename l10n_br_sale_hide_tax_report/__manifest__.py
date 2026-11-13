@@ -3,10 +3,11 @@
 
 {
     "name": "Brazilian Localization Sale Hide Tax Report",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Escodoo, " "Odoo Community Association (OCA)",
+    "author": "Escodoo, Odoo Community Association (OCA)",
     "website": "https://github.com/Escodoo/sale-addons",
     "depends": ["l10n_br_sale"],
     "data": ["report/sale_report_templates.xml"],
+    "installable": True,
 }
