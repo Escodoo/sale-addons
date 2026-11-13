@@ -17,7 +17,7 @@ Brazilian Localization Sale Hide Tax Report
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-Escodoo%2Fsale--addons-lightgray.png?logo=github
-    :target: https://github.com/Escodoo/sale-addons/tree/14.0/l10n_br_sale_hide_tax_report
+    :target: https://github.com/Escodoo/sale-addons/tree/18.0/l10n_br_sale_hide_tax_report
     :alt: Escodoo/sale-addons
 
 |badge1| |badge2| |badge3|
@@ -40,7 +40,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/Escodoo/sale-addons/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/Escodoo/sale-addons/issues/new?body=module:%20l10n_br_sale_hide_tax_report%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/Escodoo/sale-addons/issues/new?body=module:%20l10n_br_sale_hide_tax_report%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -48,21 +48,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Escodoo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Escodoo <https://www.escodoo.com.br>`_:
+- `Escodoo <https://www.escodoo.com.br>`__:
 
-  * Marcel Savegnago <marcel.savegnago@escodoo.com.br>
-  * Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+  - Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+  - Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
-This module is part of the `Escodoo/sale-addons <https://github.com/Escodoo/sale-addons/tree/14.0/l10n_br_sale_hide_tax_report>`_ project on GitHub.
+This module is part of the `Escodoo/sale-addons <https://github.com/Escodoo/sale-addons/tree/18.0/l10n_br_sale_hide_tax_report>`_ project on GitHub.
 
 You are welcome to contribute.
