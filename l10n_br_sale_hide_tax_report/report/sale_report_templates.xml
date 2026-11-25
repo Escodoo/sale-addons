@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_l10n_br_sale_custom"
+        inherit_id="l10n_br_sale.report_saleorder_document_l10n_br_sale"
+        priority="100"
+    >
+        <!-- Hide the taxes column (header) -->
+        <xpath expr="//th[@name='th_taxes']" position="replace" />
+        <!-- Hide the taxes column (cells). l10n_br_sale defines two
+             td_taxes (Brazilian company / other countries); xpath only
+             matches the first occurrence, so remove each one in turn. -->
+        <xpath expr="//td[@name='td_taxes']" position="replace" />
+        <xpath expr="//td[@name='td_taxes']" position="replace" />
+        <!-- Always show the line amount including taxes -->
+        <xpath
+            expr="//td[@name='td_subtotal']/span[@t-if=&quot;doc.company_price_include == 'tax_included'&quot;]"
+            position="replace"
+        >
+            <span t-field="line.price_total" />
+        </xpath>
+        <xpath expr="//td[@name='td_subtotal']/span[@t-else]" position="replace" />
+        <!-- Show only the total, hiding untaxed amount and tax groups -->
+        <xpath
+            expr="//div[@name='total']//t[@t-call='sale.document_tax_totals']"
+            position="replace"
+        >
+            <tr class="o_total">
+                <td>
+                    <strong>Total</strong>
+                </td>
+                <td class="text-end">
+                    <strong
+                        t-out="doc.tax_totals['total_amount_currency']"
+                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                    />
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>
